@@ -4,26 +4,29 @@ title: About
 permalink: /about/
 ---
 
-[Reverie](https://github.com/amitmerchant1990/reverie) is a Jekyll theme which is simple and opinionated. It's actually a fork of [jekyll-now](https://github.com/barryclark/jekyll-now) with some additional features and personal touches which I've implemented to suit my needs for [my blog](https://www.amitmerchant.com).
+Torben Tech Blog is basically about anything related to tech. Check out the [Search](/search/) if you are looking for something specific, or scroll through the [Archive](/archive/) to read my latest posts.
 
-This is a plug-and-play Jekyll theme which you can use on GitHub Pages without even setting up a local environment.
+## What you will find here
 
-## Features
+### Cloud-related posts
 
-- Command-line free fork-first workflow, using GitHub.com to create, customize and post to your blog
-- Fully responsive and mobile optimized base theme
-- Sass/Coffeescript support using Jekyll 2.0
-- Free hosting on your GitHub Pages user site
-- All the SEO goodies comes in-built
-- Markdown blogging
-- Syntax highlighting using Pygments
-    - [Dracula syntax theme](https://draculatheme.com/) included
-- Disqus commenting
-- Google Analytics integration
-- Fuzzy search across blog posts
-- Pagination of posts works out-of-the-box.
-- Categorize posts out-of-the box
-- RSS Feed
-- In-built sitemap
+Those posts handle everything regarding public and private clouds, including Google Cloud Platform, Amazon Web Services and Microsoft Azure. Maybe even some Alibaba Cloud! I also focus on private cloud development, especially enterprise-grade private clouds.
 
-Learn more about it [here](https://github.com/amitmerchant1990/reverie) on how to get started.
+### Home Tech
+
+Ever wanted to set up your own secure home cloud? Tired of watching advertisements while you're at home or on the road? Find everything you need to know here. On those posts, I mostly focus on **easy** to realize projects which won't burn your purse (cost-effective) and still will work out perfectly while being easy to create & maintain.
+
+### Embedded Systems
+
+Embedded systems are all around us, whether it's your dish washer or (probably) your new light bulb. They all use something called "embedded systems" which mostly include super interesting micro controllers that can be enhanced and developed further. So let's hack into them!
+
+### Anything related to programming
+
+I love looking into the newest trends of programming, and I know you do to. So what's the difference you'll find in my blog posts than what you will find in the 10th million other blog post about it? Well, I simply do not just advertise every new trend, but I look under the hood of it, evaluate it and only recommend stuff that I tested myself and that I am happy with.
+
+## About the author
+
+The name's [Torben Dury](https://torbendury.de). I'm interested in tech, whether at work or at home. I'm always open to the new and unknown and love to discover things.
+
+## About the blog
+This blog is backed by [Jekyll](https://jekyllrb.com) and uses the [Reverie](https://github.com/amitmerchant1990/reverie) theme. Look how fast it loads, static pages are amazing (and safe to browse)!
