@@ -12,7 +12,7 @@ author: Torben Dury
 description: From Cloud To Embedded To Home Automation.
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar: ./android-chrome-512x512.png
+avatar: /images/android-chrome-512x512.png
 
 #
 # Flags below are optional
