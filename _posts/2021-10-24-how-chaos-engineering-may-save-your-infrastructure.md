@@ -4,7 +4,7 @@ title: How Chaos Engineering May Save Your Infrastructure
 categories: [Cloud]
 ---
 
-_A short story about how you can specifically inject errors into a running system - and how you will improve your system with it._
+A short story about how you can specifically inject errors into a running system - and how you will improve your system with it.
 
 You have probably already developed a software artifact that you were afraid of being touched by the wrong developer afterwards. There is probably a component in the overall system in your project or company that no one likes to do support or operating. And most likely you are afraid that your system will fail or malfunction. Did you nod your head while reading? Then stick with it and read about how to build more confidence in your system - **by breaking it**.
 
