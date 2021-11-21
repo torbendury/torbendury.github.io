@@ -14,7 +14,11 @@ You have probably already developed a software artifact that you were afraid of 
 
 Netflix' Simian Army has taken big steps forward by developing various "monkeys". You can read that on the [Netflix TechBlog](https://netflixtechblog.com/the-netflix-simian-army-16e57fbab116). LinkedIn has also developed several tools that they write about in various articles, for example in the infoQ journal.
 
-![Netflix picture](images/2021-10-24/01.webp)
+<div style="text-align: center;">
+  <picture>
+    <source srcset="/images/2021-10-24/01.webp" type="image/webp">
+  </picture>
+</div>
 
 **When developing software, we are too afraid that something might break.** We trust the operations department or a dedicated team that takes care of architecture, infrastructure and day-to-day operations. That will be fine, the team will bend it. Well, that's where it's going to explode!
 
