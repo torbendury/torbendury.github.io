@@ -20,7 +20,7 @@ Let's get to the most basic use case: _You want to distribute request load betwe
 
 NGINX offers a `HTTP module` to balance load via a `upstream` block, as shown here:
 
-```nginx.conf
+```nginx
     upstream myBackend {
         server 13.37.42.42:80       weight=1;
         server myapp.example.com    weight=2;
@@ -31,3 +31,5 @@ NGINX offers a `HTTP module` to balance load via a `upstream` block, as shown he
         }
     }
 ```
+
+This configuration snippet will balance any loads across the two declared HTTP servers on port `80`. The `weight` parameter defined will tell NGINX to pass **twice** as many connections to the second server (`weight=2`). `weight` defaults to `1`.
