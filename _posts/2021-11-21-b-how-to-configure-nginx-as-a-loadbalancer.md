@@ -112,8 +112,37 @@ Client which connect to your NGINX instance via port `UDP:1195` will then be for
 
 ## Passive Health Checks
 
-tbd
+Passive health checking is part of the Open Source version of NGINX, so let's look into it, too. When you need to ensure that only healthy upstream servers are being used, configure your `upstream` like this:
+
+```nginx
+    upstream backend {
+        server backend1.example.com:1234 max_fails=2 fail_timeout=2s;
+        server backend2.example.com:1234 max_fails=2 fail_timeout=2s;
+    }
+```
+
+NGINX can monitor the status of proxied requests when they are passed through.
+
+**NOTE:** Health checks are monitored and enabled by default! Above example only shows you how to tweak it a little bit. Monitoring is key on all types of load balancing. For better user experience, as well as business continuity. You can tweak passive health checks for HTTP, TCP and UDP.
 
 ## Slow Start
 
-tbd
+Slow starting in NGINX enables us to give applications the time they need to startup before being bombed with requests. For example, if your MySQL servers need 30s to startup, you may implement your upstream backends like this:
+
+```nginx
+    upstream {
+        server read1.mysqldb.example.com:3306   slow_start=30s weight=5;
+        server read2.mysqldb.example.com:3306   slow_start=30s;
+        server 13.37.42.42:3306                 backup;
+    }
+```
+
+The example is took from the UDP section and was enhanced by the `slow_start` parameter. This tells NGINX to slowly ramp up traffic to the upstream servers after they are introduced into the upstream pool. `read1` and `read2` will experience slowly ramping traffic over the first `30s` when they are entering the upstream pool.
+
+## Sum Up
+
+In this post, you learned:
+
+- How to implement load balancing for HTTP, TCP and UDP
+- Tweak passive health checking for your backend upstreams
+- Slowly ramp up load to your backends as soon as they join the upstream pool
