@@ -85,13 +85,6 @@ plugins:
   - jekyll-feed # Create an Atom feed using the official Jekyll feed gem
   - jekyll-seo-tag
   - jekyll-paginate
-  - jekyll-plantuml
-
-plantuml:
-  url: "http://www.plantuml.com/plantuml"
-  type: "svg"
-  ssl_noverify: "0"
-  http_debug: "0"
 
 include: ["_pages"]
 
