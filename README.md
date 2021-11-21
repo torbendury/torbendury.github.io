@@ -8,6 +8,18 @@
 </div>
 
 ---
+
 ## License
 
 MIT
+
+## Categories
+
+A list of categories that may be used.
+
+- Cloud
+- Home
+- Embedded
+- Miscellaneous
+- Trends
+- Web
