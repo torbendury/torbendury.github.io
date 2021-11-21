@@ -87,11 +87,7 @@ Did I mention that there should be a small MarkDown template for a chaos experim
 
 ## 1. SHORT DESCRIPTION
 
-** What is the initial state? **
-
-** What action is being taken? **
-
-** What are the effects of this action? **
+** What is the initial state? What action is being taken? What are the effects of this action? **
 
 ## 2. HYPOTHESIS
 
@@ -99,9 +95,7 @@ Did I mention that there should be a small MarkDown template for a chaos experim
 
 ## 3. METRICS
 
-** What data do we pull from the system to observe the experiment? **
-
-** Which business-relevant data do we consider? **
+** What data do we pull from the system to observe the experiment? Which business-relevant data do we consider? **
 
 ## 4. NOTIFY
 
@@ -109,21 +103,15 @@ Did I mention that there should be a small MarkDown template for a chaos experim
 
 ## 5. IMPLEMENTATION
 
-** How do we carry out the action? **
-
-** How long does the experiment take? **
+** How do we carry out the action? How long does the experiment take? **
 
 ## 6. ANALYSIS
 
-** What system and business data has been accumulated? **
-
-** What do we conclude from the individual data sets? **
+** What system and business data has been accumulated? What do we conclude from the individual data sets? **
 
 ## 7. SCALING
 
-** How can we roll out the experiment more broadly? **
-
-** What other components can this experiment be applied to? **
+** How can we roll out the experiment more broadly? What other components can this experiment be applied to? **
 
 ** What other components is the experiment already applied to? **
 
