@@ -36,6 +36,8 @@ NGINX offers a `HTTP module` to balance load via a `upstream` block, as shown he
 
 This configuration snippet will balance any loads across the two declared HTTP servers on port `80`. The `weight` parameter defined will tell NGINX to pass **twice** as many connections to the second server (`weight=2`). `weight` defaults to `1`.
 
+![PLANTUML NGINX HTTP](https://www.plantuml.com/plantuml/svg/SoWkIImgoStCIybDBE3IYbREoKpFA4alIgsCLGWjJYtYqWAAbMTabgJ6AlYvU_f500M08a05gNcnLa05PK0rDidvAQbsN8R6UiRcUYP6G6HbOS1LdWeoojQGoqOV8cyDqLkPcfEJNuwkERSoiQ10BxKYCRSW9rKlEJyNfjy8IRz3QbuArAq0)
+
 The shown `upstream` module controls HTTP load balancing for us. We can define a pool of destination servers (by IP, DNS records - yes, even UNIX sockets) and can control balancing mechanisms by declaring `weight` on certain upstreams. Each `upstream` destination may be defined in the `server` directive block. You can even control balancing algorithms (NGINX Plus feature).
 
 To make this part complete, NGINX "Plus" (paid version) offers you some more convenient parameters as connection limits, thresholds, advanced DNS resolution and even some load ramping mechanisms.
@@ -64,6 +66,8 @@ Define an example cluster like this:
 
 This one is a little bit more complicated. The `server` block instrcuts NGINX to listen on `TCP:3306` and balance incoming load between two MySQL servers (`read1` and `read2`) - and even lists another one as a pure backup, just in case that `read1` and `read2` die.
 
+![PLANTUML NGINX TCP](https://www.plantuml.com/plantuml/svg/SoWkIImgoStCIybDBE3IYbREoKpFA4alIgsCLGWjJYtYqWAAbMTabgJ6AlYvU_f500M08a05gNcnLa05PK0rDidvAQbsN4MfYIc6UhcLnOKvAKbwgHM9kGKvgNh9-RbS8Su1LiR61cPSvQaWusrDkMpq8Ngi8UPLfkRav9UJRY2wEI27evjYQAndRAvdOWH443r9YSdPfGKA-NavbKZw7LBpKg3X0000)
+
 **IMPORTANT:** This config should not be added to `conf.d/`, as those configs will be used within `http` blocks - **instead**, you will create a folder, e.g. `stream.conf.d`, open a `stream` block inside your `nginx.conf` file and include the folder with the snippet above.
 
 With the `stream` module, you may (just like in HTTP load balancing) define upstream server. When defining your server, you need to pass a port to listen on (optional: address + port). The `upstream` block is pretty much like the HTTP load balancer `upstream` block.
@@ -88,6 +92,9 @@ Take the following example:
 ```
 
 In this config example, we simply tell NGINX to use the UDP protocol by appending `udp` to our `server` block. Again, we use `stream`, which will be included from a `stream.conf.d` folder inside `nginx.conf`.
+
+![PLANTUML NGINX UDP](https://www.plantuml.com/plantuml/svg/SoWkIImgoStCIybDBE3IYbREoKpFA4alIgsCLGWjJYtYqWAAbMTabgJ6AlYvU_f500M08a05gNcnLa05PK0rDidvAQbsN7ab1OPwkPL0AYE_kAHOBpa_bolK9S3AqDZOdAiy5MImhH6NZJv4jJN4fChKd9pySYn66U4q2c62GsfU2jJj0000)
+
 NTP is a very basic example. If we need to pass multiple requests and answers back and forth, we can declare the `reuseport` parameter. You definitely want to use this if you implement services like VPNs, VoIP, virtual desktops or DTLS.
 
 Take this as an example: You are running a NGINX instance and have a OpenVPN server running locally. You want to use this code snippet:
