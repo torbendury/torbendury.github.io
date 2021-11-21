@@ -12,3 +12,4 @@ package.json
 .jekyll-cache
 Gemfile
 legacy
+plantuml
