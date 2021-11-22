@@ -10,9 +10,7 @@ Software-based horizontal scaling infrastructure is popular because of its flexi
 
 NGINX fills our need as a load balancer in a number of ways. It can be configured as a HTTP, TCP and UPD load balancer with different balancing behaviors, which I will cover in this blog post.
 
-Regardless of the stateless-ness of modern web applications, reality shows that we might still need to let clients stick to certain servers. NGINX can handle that. When we balance load, the impact to users may **only** be positive.
-
-You also need to ensure that the backends you are balancing load to are halthy - NGINX "Plus" offers health checks for this, passive and active ones. We will discuss them later in this post.
+You also need to ensure that the backends you are balancing load to are healthy - NGINX "Plus" offers health checks for this, passive and active ones. The free version of NGINX offers only passive health checking. We will discuss this later in this post.
 
 ## Load Balancing Protocols
 
