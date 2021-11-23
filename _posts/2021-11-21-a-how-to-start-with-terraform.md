@@ -28,7 +28,7 @@ To follow this tutorial, you need Terraform installed locally on your machine. Y
 
 We expect that you have an active Google Cloud Platform account, a proper `project` setup and have access credentials (e.g. by [creating a Service Account](https://console.cloud.google.com/iam-admin/serviceaccounts) and giving it API access to GCP).
 
-**NOTE**: Creating infrastructure resources in public clouds costs money and is usually billed by usage time + size. For this tutorial, we use a VM with `f1-micro` machine type which runs on GCP's _always free_ resources.
+**NOTE**: Creating infrastructure resources in public clouds costs money and is usually billed by usage time + size. For this tutorial, we use a VM with `e2-micro` machine type which runs on GCP's _always free_ resources.
 
 ### Writing the configuration
 
@@ -53,7 +53,7 @@ With this few lines, we told Terraform to use the "google" provider (GCP) and wh
 ```hcl
 resource "google_compute_instance" "tutorial" {
   name         = "terraform-example-01"
-  machine_type = "f1-micro"
+  machine_type = "e2-micro"
   zone         = "us-central1-c"
 
   boot_disk {
@@ -74,7 +74,7 @@ resource "google_compute_instance" "tutorial" {
 
 _Content of `vm.tf`_
 
-With this example, you will create a Google Compute Engine instance called `terraform-example-01` with machine type `f1-micro`. The zone (same as in our provider config) is `us-central1-c`. It will run a basic Debian 10 image (provided by GCP) and run in our `default` network. This network gets created when you create a new project in GCP. It will get an ephemeral public IP from which you will be able to connect to it.
+With this example, you will create a Google Compute Engine instance called `terraform-example-01` with machine type `e2-micro`. The zone (same as in our provider config) is `us-central1-c`. It will run a basic Debian 10 image (provided by GCP) and run in our `default` network. This network gets created when you create a new project in GCP. It will get an ephemeral public IP from which you will be able to connect to it.
 
 Terraform resources are by far the most important elements of Terraform. What you see above is `HCL`, the HashiCorp Language. We declared a `resource` of type `google_compute_instance` and an identifier `tutorial`.
 
@@ -153,7 +153,7 @@ You're done! Now, locate to [GCP Console](https://console.cloud.google.com) and 
 
 #### Destroying
 
-Nothing in life is free, neither are cloud resources (except the `f1-micro` instance we just created). When you no longer need cloud resources, you'll always want to destroy them. Terraform can take care of cleaning up your cloud project (as long as it was created - or imported - by Terraform)! Just hit in the following command and confirm when prompted:
+Nothing in life is free, neither are cloud resources (except the `e2-micro` instance we just created). When you no longer need cloud resources, you'll always want to destroy them. Terraform can take care of cleaning up your cloud project (as long as it was created - or imported - by Terraform)! Just hit in the following command and confirm when prompted:
 
 ```bash
 $ terraform destroy
