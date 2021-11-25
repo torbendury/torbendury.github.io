@@ -6,11 +6,13 @@ categories: [Cloud]
 
 Learn how to set up your spare Raspberry Pi as a VPN into your home network. Browse the internet safely through your known network and hide your traffic from e.g. open WiFi hotspots.
 
-**NOTE:** This was tested with a Raspberry Pi Zero 2W (new model with WiFi), so I'd say it will work with basically every Pi available.
+**NOTE:** This was tested with a Raspberry Pi Zero 2W (new model with WiFi), so _I'd_ say it will work with basically every Pi available.
+
+Let's jump in!
 
 ## Flashing your operating system to SD card
 
-If you've already flashed a operating system for your Raspberry Pi to a SD card, you can skip this. Go ahead and install a headless Raspberry Pi OS Lite.
+If you've already flashed a operating system for your Raspberry Pi to a SD card, you can skip this. Go ahead and install a headless Raspberry Pi OS Lite, enable SSH and WiFi to remotely access it. After that, jump [here](#configuring-openvpn).
 
 For everyone else, here's the easiest and safest way to flash your SD card and install an operating system on it.
 
@@ -77,9 +79,10 @@ In the next few step, we are going to:
 When powered on, your Raspberry Pi is going to try to connect to your configured WiFi. If you have DHCP enabled, your Pi will automatically get a local IPv4 address. Locally, it's reachable with hostname `raspberrypi`.
 
 Open a shell / terminal and type
+
 ```bash
-	$ ping raspberrypi
-	# There should be a response here
+ $ ping raspberrypi
+ # There should be a response here
 ```
 
 _If you can't reach it by host, try to look the IP up in your local DHCP provider, e.g. your router._
@@ -87,9 +90,10 @@ _If you can't reach it by host, try to look the IP up in your local DHCP provide
 When you get a successful response, log into your Raspberry Pi:
 
 ```bash
-	$ ssh pi@raspberrypi
-	# OR
-	$ ssh pi@<assignedIP>
+ $ ssh pi@raspberrypi
+ # OR
+ $ ssh pi@<assignedIP>
+ [...]
 ```
 
 The default password is `raspberry`.
@@ -101,7 +105,8 @@ When logged in, change your password by typing `passwd` and enter a new, secure 
 After that, we first will do an update:
 
 ```bash
-	$ sudo apt update && sudo apt upgrade -y
+ $ sudo apt update && sudo apt upgrade -y
+ [...]
 ```
 
 ### Download PiVPN
@@ -121,16 +126,16 @@ When prompted to choose a user, you can either stick to the default (username `p
 
 Choose `OpenVPN` when asked if you prefer WireGuard or OpenVPN. For our purposes (mainly speed!) we rely on using UDP. For simplicity, we stay on the default UDP port `1194`.
 
-
 Since you will need to be able to connect from the "public" internet and your internet provider most probably changes your public IPv4 address everye 24/48 hours, you will need a service called DynDNS. This is a third party tool that gives you a public domain name and routes to your ephemeral IPv4 address. I use [dynu.com](https://dynu.com) - it is safe to use, free and super easy to setup. Make an account there, setup your router to use it and come back when you're done.
 
+![How traffic is routed to your Pi](https://www.plantuml.com/plantuml/svg/RP2nQiD038RtUmf1bzQ3Io1BtL02oP0kmJIqI_7Wt2csY2qPHUVWjw_hrj12Lad_z_reVR5IhIKERTcvvFEkeQgsId4eiar3oEPMNWA-kCFt8NXXHcya32RmlispnU9fwNOb1v0U5VmK0ezgT29V6hhLum_XsIMZu5gJOP5jzmVeL7eAgBC2qog5C71ClRHEyI9DZm46YGfTF3RauJM_xvSF_v1pwMCJiO2Tj0Xl4ct49jEoKaGkifm-ylrisjJepxUwJaamBK_Z08XDe1w9Zj6kekS_uZLo-FtR5m00)
+_From left to right: How your traffic is routed_
 
 When we entered our DNS information, we can choose to enable elliptic curve algorithms for encryption and stay with a standard 256 Bit encryption (if you're paranoid, go for the 521 Bits).
 
 You will be asked to install "unattended upgrade" utilities. This is going to be installed via `pip` (package managing for python modules). It will ensure that at least security-relevant upgrades will be installed without your supervision. Do it!
 
 When the installer is done, reboot your Pi.
-
 
 ### Create client certificates
 
@@ -139,10 +144,10 @@ Your devices will connect to your VPN via a DNS, using a client certificate and 
 To create one, log into your Pi and run:
 
 ```bash
-	$ ssh pi@pi-ip-address
-	[...]
+ $ ssh pi@pi-ip-address
+ [...]
 
-	$ pivpn add
+ $ pivpn add
 ```
 
 This will start an interactive session where you can enter:
@@ -168,5 +173,3 @@ Let's take some security considerations for now. Basically, your router has open
 Keep your system updated. `unattended-upgrades` is sufficient for system-stuff, but also keep your OpenVPN server updated on a frequent basis.
 
 On your router, you are able to restrict traffic inside your own home network. Make use of it! Clients which enter your network through your OpenVPN Pi are mostly not going to need to do stuff in your network, they often just want to access a home cloud or use it for tunnelling traffic to the public internet. Restrict everything as needed and use _least privilege_ whenever possible.
-
-
