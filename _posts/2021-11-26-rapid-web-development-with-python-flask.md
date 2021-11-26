@@ -4,7 +4,9 @@ title: Introduction to Rapid Web Development Using Python Flask
 categories: [Programming]
 ---
 
-This post is meant to be a light introduction into Python Flask. At the end of this post, you'll be able to rapidly develop small web applications. With some more learning, those apps will be enterprise-ready. The best of it? They're natively built to run in containerized runtimes (like Docker, containerd, ...) and the most available serverless platforms support the usage of Flask.
+This post is meant to be a light introduction into Python Flask. At the end of this post, you'll be able to rapidly develop small web applications. 
+
+With some more learning, those apps will be enterprise-ready. The best of it? They're natively built to run in containerized runtimes (like Docker, containerd, ...) and the most available serverless platforms support the usage of Flask.
 
 ## What is Flask?
 
