@@ -97,6 +97,8 @@ Hit save, and from your terminal (or IDE) run the application:
 
 This is going to start your local webserver. Try to access it under [http://localhost:5000](http://localhost:5000) (the port may differ, it will be printed out on your log output on which port exactly the app is running).
 
+![Browser showing your first app](images/2021-11-26/01.png)
+
 Congratulations, you just built your first web application with Flask and served some content!
 
 ## Now what about templating? You promised templating!
