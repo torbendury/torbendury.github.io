@@ -3,7 +3,6 @@ layout: post
 title: Introduction to Rapid Web Development Using Python Flask
 categories: [Programming]
 ---
-{% raw %}
 
 This post is meant to be a light introduction into Python Flask. At the end of this post, you'll be able to rapidly develop small web applications. With some more learning, those apps will be enterprise-ready. The best of it? They're natively built to run in containerized runtimes (like Docker, containerd, ...) and the most available serverless platforms support the usage of Flask.
 
@@ -97,7 +96,7 @@ Hit save, and from your terminal (or IDE) run the application:
 
 This is going to start your local webserver. Try to access it under [http://localhost:5000](http://localhost:5000) (the port may differ, it will be printed out on your log output on which port exactly the app is running).
 
-![Browser showing your first app](images/2021-11-26/01.png)
+<div style="text-align: center"><img src="/images/2021-11-26/01.png"/></div>
 
 Congratulations, you just built your first web application with Flask and served some content!
 
@@ -143,6 +142,8 @@ Did you see that we basically wrote two HTML files which have _quite_ the same c
 Let's have a look at that, and start implementing a Flask best practice in templating.
 
 Create a new `master.html` under `templates/`. This is going to be our - you guessed it - master template, from which we will derive our pages.
+
+{% raw %}
 
 ```html
 <!DOCTYPE html>
