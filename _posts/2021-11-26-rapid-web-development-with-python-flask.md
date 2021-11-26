@@ -1,8 +1,9 @@
 ---
 layout: post
 title: Introduction to Rapid Web Development Using Python Flask
-categories: [Programming, Web]
+categories: [Programming]
 ---
+{% raw %}
 
 This post is meant to be a light introduction into Python Flask. At the end of this post, you'll be able to rapidly develop small web applications. With some more learning, those apps will be enterprise-ready. The best of it? They're natively built to run in containerized runtimes (like Docker, containerd, ...) and the most available serverless platforms support the usage of Flask.
 
@@ -24,7 +25,6 @@ Flask is light. This is both a pro and a contra. Positively, you don't need to w
 If you've ever worked with HTML or built your own website, you probably ran into the problem of keeping multiples pages in your website consistent. Templating makes this easy. Basically, you define your page layout once (think of a blog: There's a layout for your home page, all blog posts look the same, ...) and can use them infinite times.
 
 You can not just define them once, but you can change them whenever you like and your whole website is still going to match!
-
 
 ## Your first web application
 
@@ -208,3 +208,5 @@ In this quick overview, you learned:
 - How to quickly write best practice HTML templates used by Flask
 - How to write Flask routes in Python
 - How to rapidly develop easy web servers
+
+{% endraw %}
