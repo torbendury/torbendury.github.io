@@ -100,7 +100,7 @@ This is going to start your local webserver. Try to access it under [http://loca
 
 Congratulations, you just built your first web application with Flask and served some content!
 
-## Now what about templating? You promised templating!
+## You promised templating!
 
 Sure thing. In this section, I'll show you a quick introduction to templating. It's easy, free and fun! 
 
