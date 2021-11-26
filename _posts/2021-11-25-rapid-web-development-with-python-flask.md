@@ -133,3 +133,76 @@ Create the following template `hello.html` to be served from your app:
 You know the drill, hit save and start your app.
 
 When accessing [http://localhost:5000/](http://localhost:5000), you will still see the first page we've built. But when you access [http://localhost:5000/Torben](http://localhost:5000/Torben), you will see "Hello Torben"!
+
+## Templating best practices
+
+Did you see that we basically wrote two HTML files which have _quite_ the same content inside? Yes, me too - by intention. The only thing that really changes on our two HTML sites are the HTML `body` and the `title` sections. They are both intended to use the same CSS (which, in our case, is non at the moment) and everything else is based on the same skeleton.
+
+Let's have a look at that, and start implementing a Flask best practice in templating.
+
+Create a new `master.html` under `templates/`. This is going to be our - you guessed it - master template, from which we will derive our pages.
+
+```html
+<!DOCTYPE html>
+<html lang='de'>
+  <head>
+    <meta charset="utf-8"/>
+    <title>{% block title %}{% endblock %} - Definitely not static!</title>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='hello.css')}}"/>
+  </head>
+  <body>
+
+{% block body %}{% endblock %}
+
+  </body>
+</html>
+```
+
+We just used some `block` definitions, which we will be able to fill dynamically. Watch out! Edit our `index.html` again and write the following:
+
+```html
+{% extends "master.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+Hello there!
+{% endblock %}
+```
+
+On the first block, `title`, we insert "Home" - it's our Index/Home page at last. The `body` block is filled with "Hello there!". Anything else is inherited by our precious `master.html`.
+
+Now, we also want our `hello.html` file to shrink, so open it and type:
+
+```html
+{% extends "master.html" %}
+
+{% block title %}Hello{% endblock %}
+
+{% block body %}
+Hello, {{name}}!
+{% endblock %}
+```
+
+Done! We just completely got rid of duplicated code and also started following best practices.
+
+## Addition: Dynamic links
+
+You often want pages to link to each other, e.g. link child pages back to your home page and vice-versa, or want some more advanced website headers to guide your users / customers through your website and link them to interesting stuff.
+
+Implement the `a` HTML directive and use it like this:
+
+```html
+<a href="{{ url_for('index') }}"><button>Home</button></a>
+```
+
+Flask will then automatically link you back to your home page via the button "Home". Try it!
+
+## Conclusion
+
+In this quick overview, you learned:
+
+- What Flask is
+- How to quickly write best practice HTML templates used by Flask
+- How to write Flask routes in Python
+- How to rapidly develop easy web servers
