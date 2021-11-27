@@ -196,7 +196,7 @@ EOF
 
 `cert-manager` is going to take care of auto-renewing the certificates when needed. By default, Let's Encrypt certificate last for 3 months and then need to be updated - this is where handy `cert-manager` comes in. It constantly checks for expiring certificates and automatically renews them for you. AGIC will take care of replacing them for users which access your application.
 
-## Securing your application with Network Security Group
+## Securing your application with NSG
 
 You can create a Azure `Network Security Group` and assign it to the subnet of your Application Gateway instance. With this, you can ensure control of network activity of inbound as well as outbound traffic to/from your AppGW.
 
