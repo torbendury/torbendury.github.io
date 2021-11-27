@@ -74,7 +74,7 @@ resource "azurerm_kubernetes_cluster" "example" {
 
 This should be a sufficient snippet for your existing AKS Terraform resource. If you don't own one, you can take the example config from the [official azurerm Terraform documentation](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster).
 
-## Get credentials, deploy cert-manager and create an app
+## Credentials, cert-manager and example app
 
 Your cluster will have a public IP assigned by default. Also, your Application Gateway (it will reside in a separate Resource Group) will have a public IP. You can use this public IP to let a DNS point to. Then, use subdomains to access your specific applications.
 
