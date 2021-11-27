@@ -4,21 +4,21 @@ title: Using Azure Application Gateway Ingress Controller in AKS and Let's Encry
 categories: [Cloud]
 ---
 
-How to deploy an AKS cluster with a managed instance of _Application Gateway_ and _Application Gateway Ingress Controller_ and obtain free and automated Let's Encrypt certificates. We will be doing this with Terraform and Helm.
+How to deploy an AKS cluster with a managed instance of __Application Gateway__ and __Application Gateway Ingress Controller__ and obtain __free__ and __automated__ Let's Encrypt certificates. We will be doing this with Terraform and Helm.
 
 ## Introduction
 
-When using Azure's AKS (Managed Kubernetes Engine) together with workloads that have to be accessible from outside your cluster, you will sooner or later be challenged with choosing a proper ingress, SSL certificates and a well maintainable way of managing all of this with minimum effort.
+When using Azure's **AKS** (Managed Kubernetes Engine) together with workloads that have to be accessible from outside your cluster, you will sooner or later be challenged with choosing a proper ingress, SSL certificates and a well maintainable way of managing all of this with minimum effort.
 
 What we want to build is a:
 
-- solution that needs minimum effort (with reasonable _initial_ effort for setup)
+- solution that needs **minimum effort** (with reasonable _initial_ effort for setup)
 - infrastructure that is mainly managed not by you, but by the platform you use and the services you deploy
-- overall system that is secure and hardened by default
+- overall system that is **secure** and **hardened** by default
 
 ## Prerequisites
 
-We are going to perform those tasks via HashiCorp Terraform. If you want to follow this step-by-step, you will need some basic Terraform skills and a proper setup, we won't discuss this here. I recently wrote a blog entry on How To Start With Terraform, you might check this out if you lack some skills on this spot.
+We are going to perform those tasks mainly via HashiCorp Terraform. If you want to follow this step-by-step, you will need some basic Terraform skills and a proper setup, we won't discuss this here. I recently wrote a blog entry on [How To Start With Terraform](https://torbentechblog.com/a-how-to-start-with-terraform/), you might check this out if you lack some skills on this spot.
 
 Otherwise, what you are going to need is:
 
@@ -29,21 +29,21 @@ Otherwise, what you are going to need is:
 
 ## Why not use nginx ingress controller?
 
-You may have stumbled over the thought of using the OSS and free _nginx ingress controller_. In many cases, this is absolutely fine and it often works out of the box. However, sometimes this does not meet our requirements. It brings us a piece of software that needs to be configured, maintained and kept up-to-date. In terms of cloud thinking, this does not seem to be as rosy as we might think (at least for production workloads).
+You may have stumbled over the thought of using the OSS and free _nginx ingress controller_. In many cases, this is absolutely fine and it often works out of the box. However, sometimes this does not meet our requirements. It brings us a piece of software that **needs to be configured, maintained and kept up-to-date**. In terms of cloud thinking, this does not seem to be as rosy as we might think (at least for production workloads).
 
-Instead, rethink - you can pay _some_ money to your cloud provider (in this case, Microsoft Azure) and will need much less time afterwards to maintain everything - the bill might soon pay itself.
+Instead, rethink - you can pay _some_ money to your cloud provider (in this case, Microsoft Azure) and **will need much less time afterwards** to maintain everything - the bill might soon pay itself.
 
 ## Application Gateway
 
-Azure Application Gateway basically is a L7 load balancer for web traffic of any kind. It can make route decisions based on defined rule sets and much more. It is high availabe, has autoscaling enabled on default and - for us most important - delivers an ingress controller inside AKS Kubernetes clusters out of the box.
+Azure **Application Gateway** basically is a **L7 load balancer** for web traffic of any kind. It can make route decisions based on defined rule sets and much more. It is **high availabe**, has **autoscaling** enabled on default and - for us most important - delivers an **ingress controller** inside AKS Kubernetes clusters out of the box.
 
 Application Gateway is also able to handle sticky sessions (cookie based) and can do automatic SSL redirects (nice!) and supports custom error pages.
 
-If you want to put the money in it, Application Gateway also offers a Web Application Firewall (WAF). It's just a checkbox away.
+If you want to put the money in it, Application Gateway also offers a **Web Application Firewall (WAF)**. It's just a checkbox away.
 
 ## Application Gateway Ingress Controller
 
-The ingress controller part of Azure Application Gateway constantly monitors your deployed workloads which are supposed to be exposed via Application Gateway, and contintuously updates the AppGW so your selected services get exposed the right way. It runs as a `Pod` inside your cluster, you can find it in `kube-system` namespace.
+The **ingress controller** part of Azure Application Gateway constantly monitors your deployed workloads which are supposed to be exposed via Application Gateway, and contintuously updates the AppGW so your selected services get exposed the right way. It runs as a `Pod` inside your cluster, you can find it in `kube-system` namespace.
 
 As always in public cloud managed clusters, you don't worry about services running in `kube-system` namespace. They're managed by the cloud provider - if you experience problems with some services in it, make it their problem.
 
@@ -51,7 +51,7 @@ AGIC basically eliminates the need of yet-another ingress controller and yet-ano
 
 ## Deploying AppGW + AGIC
 
-There's always the possibility of deploying AppGW + AGIC _brownfield_ (to an existing cluster), but I recently had good experience with _greenfield_ deployments into fresh clusters. When creating a new cluster, AGIC can be deployed as an AddOn to the cluster. This also enables you to automatically have an Application Gateway instance created for you without having to worry about it. Give it a `/24` subnet and let it provision.
+There's always the possibility of deploying AppGW + AGIC _brownfield_ (to an existing cluster), but I recently had good experience with _greenfield_ deployments into fresh clusters. When creating a new cluster, **AGIC** can be deployed as an **AddOn** to the cluster. This also enables you to **automatically** have an Application Gateway instance created for you without having to worry about it. Give it a `/24` subnet and let it provision.
 
 Here's a Terraform snippet you can use:
 
@@ -194,7 +194,7 @@ EOF
 
 ## Renewal of certificates
 
-`cert-manager` is going to take care of auto-renewing the certificates when needed. By default, Let's Encrypt certificate last for 3 months and then need to be updated - this is where handy `cert-manager` comes in.
+`cert-manager` is going to take care of auto-renewing the certificates when needed. By default, Let's Encrypt certificate last for 3 months and then need to be updated - this is where handy `cert-manager` comes in. It constantly checks for expiring certificates and automatically renews them for you. AGIC will take care of replacing them for users which access your application.
 
 ## Securing your application with Network Security Group
 
