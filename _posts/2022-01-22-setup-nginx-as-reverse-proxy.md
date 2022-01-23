@@ -16,7 +16,7 @@ This is where `nginx` again comes in handy for utilizing it as a reverse proxy. 
 
 ## Reverse Proxies in General
 
-When looking at computet networks, a _reverse proxy_ simply is an application that sits in front of one or more backend applications and forwards clients (browsers, other applications, ...) to those applications. In that way, reverse proxies tremendously increase scalability, resilience, performance and security! And the best of it? The client applications don't know it. Resources returned by the reverse proxy appear to the client as if they come from the reverse proxy itself, so the client does not need to know that its traffic was only forwarded.
+When looking at computer networks, a _reverse proxy_ simply is an application that sits in front of one or more backend applications and forwards clients (browsers, other applications, ...) to those applications. In that way, reverse proxies tremendously increase scalability, resilience, performance and security! And the best of it? The client applications don't know it. Resources returned by the reverse proxy appear to the client as if they come from the reverse proxy itself, so the client does not need to know that its traffic was only forwarded.
 
 ![nginx forwarding traffic from multiple clients](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuShBJqbLI2hABozEBO9maaE3V22iyjIa-CI20WWdBpqphmAgF34vEpKlnH25PuJ2C-RYWXggeAiBrGio6C636euG09D0Bjnu314Zk0Z26WSW2VG70000)
 _nginx forwarding traffic from arbitrary clients to several backend services_
@@ -27,7 +27,7 @@ Yes! I've been running it for quite a time now on my [Raspberry Pi Zero](https:/
 
 ## Installation
 
-The installation is quite simple, lets get started. Take this as an example for Debian'ish systems with `apt` installed.
+The installation is quite simple, let's get started. Take this as an example for Debian'ish systems with `apt` installed.
 
 First, update your local package index and upgrade any packages which are already installed on your machine:
 
