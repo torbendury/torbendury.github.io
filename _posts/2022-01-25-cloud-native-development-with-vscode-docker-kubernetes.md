@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Cloud Native Local Development of containerized software with Docker and Kubernetes
+title: Cloud Native Local Development of Containerized Software with Docker and Kubernetes
 categories: [Cloud, Kubernetes, Homelab, Docker]
 ---
 
