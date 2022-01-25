@@ -22,11 +22,12 @@ Embedded systems are all around us, whether it's your dish washer or (probably) 
 
 ### Anything related to programming
 
-I love looking into the newest trends of programming, and I know you do to. So what's the difference you'll find in my blog posts than what you will find in the 10th million other blog post about it? Well, I simply do not just advertise every new trend, but I look under the hood of it, evaluate it and only recommend stuff that I tested myself and that I am happy with.
+I love looking into the newest trends of programming, and I know you do too. So what's the difference you'll find in my blog posts than what you will find in the 10th million other blog post about it? Well, I simply do not just advertise every new trend, but I look under the hood of it, evaluate it and only recommend stuff that I tested myself and that I am happy with.
 
 ## About the author
 
 The name's [Torben Dury](https://torbendury.de). I'm interested in tech, whether at work or at home. I'm always open to the new and unknown and love to discover things.
 
 ## About the blog
+
 This blog is backed by [Jekyll](https://jekyllrb.com) and uses the [Reverie](https://github.com/amitmerchant1990/reverie) theme. Look how fast it loads, static pages are amazing (and safe to browse)!
