@@ -1,0 +1,11 @@
+@startuml
+left to right direction
+cloud k3d {
+  node master
+  node agent_1
+  node agent_2
+}
+master -- agent_1
+master -- agent_2
+agent_1 -- agent_2
+@enduml

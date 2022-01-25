@@ -1,0 +1,22 @@
+@startmindmap
+*[#lightgrey]:Client
+<code>
+Start connection to UDP:1194
+Hand over client certificate
+</code>
+;
+**[#white]:DNS provider
+<code>
+e.g. dynu.com
+resolved your public IP(v4)
+</code>
+;
+***[#lightblue] Home Router
+****[#green]:PiVPN
+<code>
+Check client certificate
+Route traffic into home
+network
+</code>
+;
+@endmindmap

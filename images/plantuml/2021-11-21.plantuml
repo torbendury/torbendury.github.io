@@ -1,0 +1,19 @@
+@startmindmap
+*[#lightgrey] User
+**[#white]:Configuration Files
+<code>
+desired infrastructure
+state as code
+</code>
+;
+***[#lightblue]:Terraform
+<code>
+translate configuration
+to valid API requests
+via provider binaries
+</code>
+;
+****[#green] Public Clouds
+****[#yellow] Hybrid Clouds
+****[#orange] Private Clouds
+@endmindmap

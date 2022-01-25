@@ -1,0 +1,14 @@
+@startuml
+left to right direction
+actor developer
+node nginx
+cloud k3d {
+  node traefik
+  node app1
+  node app2
+}
+developer --> nginx
+nginx --> traefik
+traefik --> app1
+traefik --> app2
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+'left to right direction
+actor developer
+card developer_machine {
+    cloud k3s {
+        agent app1
+        agent app2
+    }
+    agent IDE
+    artifact build_metadata
+    artifact code
+}
+developer --> IDE : 1. write code
+build_metadata --> IDE : 2. read instructions
+IDE --> code : 3.1 build and containerize
+IDE --> k3s : 3.2 deploy container
+@enduml
