@@ -1,13 +1,13 @@
 ---
 layout: page
 permalink: /archive/
-title: Posts Archive
+title: Archive
 ---
 
 
 <div id="archives">
   <section id="archive">
-     <h3>Most Recent Posts</h3>
+     <h3>Recent Posts</h3>
       {%for post in site.posts %}
       {% unless post.next %}
       <ul class="this">
