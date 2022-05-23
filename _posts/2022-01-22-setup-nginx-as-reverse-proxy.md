@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Setup Nginx As A Reverse Proxy (on your Raspberry Pi)
-categories: [Infrastructure]
+categories: [Infrastructure, Reverse Proxy, Raspberry Pi, Nginx, Web Server]
 ---
 
 In a previous post, we discussed on [using `nginx` as a load balancer](https://torbentechblog.com/b-how-to-configure-nginx-as-a-loadbalancer/) for various protocols, as well as [setting up a Raspberry Pi as a VPN](https://torbentechblog.com/setup-raspberry-pi-as-vpn/). 
