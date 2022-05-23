@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Introduction to Rapid Web Development Using Python Flask
-categories: [Programming]
+categories: [Programming, Flask, Python, Web Development, API]
 ---
 
 This post is meant to be a light introduction into Python Flask. At the end of this post, you'll be able to rapidly develop small web applications. 
