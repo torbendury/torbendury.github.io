@@ -1,7 +1,7 @@
 ---
 layout: post
 title: k3d Up and Running Tutorial for Linux machines
-categories: [Cloud, Kubernetes, Homelab]
+categories: [Cloud, Kubernetes, Homelab, k3d, Rapid Development, YAML, Templating, Infrastructure as Code]
 ---
 
 From zero to local Kubernetes development in 10 minutes. Promised!
