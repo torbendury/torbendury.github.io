@@ -1,7 +1,7 @@
 ---
 layout: post
 title: How To Configure Nginx As A Load Balancer
-categories: [Infrastructure]
+categories: [Infrastructure, Nginx, Load Balancing, Web Server]
 ---
 
 Software-based horizontal scaling infrastructure is popular because of its flexibility and cost-effectiveness. You need a load balancer that behaves as dynamic as your infrastructure.
