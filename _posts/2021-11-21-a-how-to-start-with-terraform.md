@@ -1,7 +1,7 @@
 ---
 layout: post
 title: How To Start With Terraform
-categories: [Cloud]
+categories: [Cloud, GCP, Google Cloud Platform, HCL, Terraform, IaC]
 ---
 
 Terraform basically is a enterprise-ready deployment technology used by IT professionals who want to **provison** and **manage** their infrastructure as code (**IaC**).
