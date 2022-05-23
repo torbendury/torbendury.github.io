@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Extending Battery Life Tremendously by Utilizing Deep Sleep on Microcontrollers
-categories: [Embedded]
+categories: [Embedded, Batteries, Microcontrollers, Deep Sleep, Hardware Programming]
 ---
 
 Learn to utilize deep sleep and get extended battery life for free. This post applies to nearly every popular microcontroller that is out there, including all Espressif models, Arduinos and even Raspberry Pis.
