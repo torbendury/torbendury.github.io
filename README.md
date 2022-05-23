@@ -13,13 +13,6 @@
 
 MIT
 
-## Categories
+## Theme
 
-A list of categories that may be used.
-
-- Cloud
-- Home
-- Embedded
-- Miscellaneous
-- Trends
-- Web
+This beautiful and simple, static theme is called _Reverie_ and can be found [here](https://github.com/amitmerchant1990/reverie). Big kudos to the creator!
