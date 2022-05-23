@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Serverless Functions with Custom Domain in Google Cloud
-categories: [Cloud, GCP, Serverless]
+categories: [Cloud, GCP, Serverless, Development, Web Development, Batch Processing, GCF, IaC]
 ---
 
 When you host a simple web application, e.g. an API with serverless functions, you most certainly want your custom DNS on top of it. Here's how to do it without Firebase.
