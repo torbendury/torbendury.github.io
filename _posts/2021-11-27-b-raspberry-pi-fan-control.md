@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Building a fan controller for your Raspberry Pi
-categories: [Embedded]
+categories: [Embedded, Raspberry Pi, Hardware Programming]
 ---
 
 Learn how to build a simple and affordable fan controller for your Raspberry Pi to connect a simple fan with temperature control.
