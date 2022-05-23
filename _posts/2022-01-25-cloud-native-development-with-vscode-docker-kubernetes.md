@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Cloud Native Local Development of Containerized Software with Docker and Kubernetes
-categories: [Cloud, Kubernetes, Homelab, Docker]
+categories: [Cloud, Kubernetes, Homelab, Docker, Rapid Development, Containerization, VSCode]
 ---
 
 How to setup your local development environment to be truly _cloud native_, using Docker and Kubernetes. All together united in your local IDE (e.g. Visual Studio Code - VS Code), you can test your applications like they were running in an arbitrary cloud.
