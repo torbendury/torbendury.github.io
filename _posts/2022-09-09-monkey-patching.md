@@ -47,7 +47,7 @@ image_presets = [
   [1028, 1028]
 ]
 
-input_picture = "/tmp/input.png
+input_picture = "/tmp/input.png"
 
 import ImageProcessing
 
