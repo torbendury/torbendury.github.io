@@ -32,26 +32,26 @@ While we can *of course* force standards or bring about our own standards via th
 
 If you make shared libraries available in your company, it must follow certain company standards. That doesn't mean it is opinionated. It only meets certain minimum requirements for a quality standard that is required in the company.
 
-Opinionated is a library that goes beyond these requirements. Speaking at a higher level, a library should only be a framework to be used. This is the case, for example, if you provide individual functions that take over certain CI/CD software development tasks.
+Opinionated is a library that goes *beyond* these requirements. Speaking at a higher level, a library should only be **a framework** to be used. This is the case, for example, if you provide individual functions that take over certain CI/CD software development tasks.
 
-Of course, as a developer, I still want to be able to influence how packages are built, archived, signed and published. It is up to the author of the library to make this possible or to nip it in the bud.
+Of course, as a developer, I still want to be able to influence how packages are built, archived, signed and published. It is up to the *author* of the library to make this possible or to nip it in the bud.
 
-Another thing is to provide complete pipelines for convenience. Here you can tighten the belt of possibilities very tightly, after all it is a company-compliant pipeline that has to work with any software projects and also has to guarantee a certain stability.
+Another thing is to provide **complete pipelines** for convenience. Here you can tighten the belt of possibilities very tightly, after all it is a company-compliant pipeline that has to work with any software projects and also has to guarantee **a certain stability**.
 
 ## How Much Do You Want To Share?
 
-As with a normal software project, anyone providing a shared library must identify stakeholders and get them on board. It is not enough to develop a library according to your own taste and switch to maintenance mode. A shared library is always aimed at a user group. This user group can have a lot of knowledge about CI/CD or none at all.
+As with a normal software project, anyone providing a shared library must identify stakeholders and get them on board. It is not enough to develop a library according to your *own taste* and switch to maintenance mode. A shared library is always aimed at a user group. This user group can have a lot of knowledge about CI/CD or none at all.
 
-No single DevOps should be solely responsible for such a library. It is an organic product that grows and changes with changing requirements. It is therefore important to also involve the software developers, i.e. the user group, closely in the development. Otherwise you develop the library past the need and have sunk time for dead code.
+No single DevOps should be solely responsible for such a library. It is an organic product that **grows and changes with changing requirements**. It is therefore important to also involve the software developers, i.e. the user group, closely in the development. Otherwise you develop the library past the need and have sunk time for dead code.
 
 
 ### Splitting Up Libraries
 
-You will most certainly reach a point where you've written a shared library that provides atomic functions and some shared pipelines around it which calls those functions. This will also be the point where you will have written at least *some* functions that can be useful not only in the context of the library you have written, but can also be used in other libraries or user-defined pipelines.
+You will most certainly reach a point where you've written a shared library that provides atomic functions and some shared pipelines around it which calls those functions. This will also be the point where you will have written at least *some* functions that can be useful not only in the context of the library you have written, but can also be used in other libraries or **user-defined pipelines**.
 
 Take for example a function that sends a webhook to a Microsoft Teams channel or to a similar notification endpoint, or creates a calendar entry to notify co-workers about an upcoming maintenance window. Such functions (and other helpers) can not only be useful in your library, but can also provide great improvement to the workflow of other CI/CD pipelines in your company or organization.
 
-This is the point where you should start a shared library that consists of those utility functions. You can then import this utility library into your shared library and use those utilities there while you prevent duplicated code and human errors.
+This is the point where you should start a shared library that consists of those **utility functions**. You can then import this utility library into your shared library and use those utilities there while you **prevent duplicated code and human errors**.
 
 ## Versioning
 
@@ -156,9 +156,9 @@ As soon as you run the job, the defined `helloPipeline` will be called and execu
 
 ## Summary And Helpful Links
 
-As you see, it is definitely not hard getting started with writing your own Jenkins libraries. They can make it very easy to define standardized pipeline steps and functions that can be used by you and your colleagues without any hassle. Make sure to document your functions and pipelines well so it will actually be used and won't end as dead code.
+As you see, it is **definitely not hard** getting started with writing your own Jenkins libraries. They can make it *very* easy to define standardized pipeline steps and functions that can be used by you and your colleagues without any hassle. Make sure to **document** your functions and pipelines well so it will actually be used and won't end as dead code.
 
-If you want to read on some more or add some bookmarks, here are some links which I found helpful when taking my first steps with shared libraries in Jenkins. Soon I'll probably publish my own Terraform Jenkins library and write a devlog to it, so stay tuned.
+If you want to read on some more or add some bookmarks, here are some links which I found helpful when taking my first steps with shared libraries in Jenkins. **Soon I'll probably publish my own Terraform Jenkins library and write a devlog to it, so stay tuned.**
 
 - [Jenkins - Extending with Shared Libraries](https://www.jenkins.io/doc/book/pipeline/shared-libraries/)
 - [Best practices for writing Jenkins shared libraries](https://bmuschko.com/blog/jenkins-shared-libraries/)
