@@ -9,7 +9,7 @@ name: Torbens Tech Blog
 author: Torben Dury
 
 # Short bio or description (displayed in the header)
-description: From Cloud To Embedded To Home Automation.
+description: Let's talk about Tech!
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
 avatar: /images/profilepic.webp
@@ -24,7 +24,7 @@ footer-links:
   email: torbendury@gmail.com
   facebook:
   flickr:
-  github: torblerone
+  github: torbendury
   instagram: torben.music
   linkedin: torben-dury-a456b3213
   pinterest:
