@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Jenkins Shared Libraries 101
-categories: [CICD, Development, DevOps, Jenkins]
+categories: [DevOps, Development, Jenkins]
 ---
 
 A quick glance on how Jenkins shared libraries work, how to write your own libraries and some deeper thoughts of structuring and extending your library.
@@ -43,7 +43,6 @@ Another thing is to provide **complete pipelines** for convenience. Here you can
 As with a normal software project, anyone providing a shared library must identify stakeholders and get them on board. It is not enough to develop a library according to your *own taste* and switch to maintenance mode. A shared library is always aimed at a user group. This user group can have a lot of knowledge about CI/CD or none at all.
 
 No single DevOps should be solely responsible for such a library. It is an organic product that **grows and changes with changing requirements**. It is therefore important to also involve the software developers, i.e. the user group, closely in the development. Otherwise you develop the library past the need and have sunk time for dead code.
-
 
 ### Splitting Up Libraries
 

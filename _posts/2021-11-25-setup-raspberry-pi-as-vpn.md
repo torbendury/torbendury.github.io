@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Set Up Your Raspberry Pi As a VPN
-categories: [Homelab, Home, Raspberry Pi, VPN, OpenVPN]
+categories: [Home Lab, Raspberry Pi]
 ---
 
 Learn how to set up your spare Raspberry Pi as a VPN into your home network. Browse the internet safely through your known network and hide your traffic from e.g. open WiFi hotspots.

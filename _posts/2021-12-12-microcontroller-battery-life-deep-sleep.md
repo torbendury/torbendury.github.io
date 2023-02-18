@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Extending Battery Life Tremendously by Utilizing Deep Sleep on Microcontrollers
-categories: [Embedded, Batteries, Microcontrollers, Deep Sleep, Hardware Programming]
+categories: [Embedded, Microcontrollers]
 ---
 
 Learn to utilize deep sleep and get extended battery life for free. This post applies to nearly every popular microcontroller that is out there, including all Espressif models, Arduinos and even Raspberry Pis.
@@ -60,7 +60,7 @@ This is where 'deep sleep' comes in. If I put my controller described above into
 
 ## How Often Do I Need To Sense?
 
-In the wild internet, you will find people that solder out power LEDs and several other components off their boards. This is *very* nice and shows that you can really cut your boards to size to match your needs. In my case, I want a stock board that will be capable of stock things when my future me is not anymore interested in measuring basement temperature and humidity.
+In the wild internet, you will find people that solder out power LEDs and several other components off their boards. This is _very_ nice and shows that you can really cut your boards to size to match your needs. In my case, I want a stock board that will be capable of stock things when my future me is not anymore interested in measuring basement temperature and humidity.
 
 Thus, this post is not meant for bleeding edge tinkerers, but extending battery life with on-board software.
 

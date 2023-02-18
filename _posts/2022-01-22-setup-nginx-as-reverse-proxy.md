@@ -1,10 +1,10 @@
 ---
 layout: post
 title: Setup Nginx As A Reverse Proxy (on your Raspberry Pi)
-categories: [Infrastructure, Reverse Proxy, Raspberry Pi, Nginx, Web Server]
+categories: [Infrastructure, Raspberry Pi]
 ---
 
-In a previous post, we discussed on [using `nginx` as a load balancer](https://torbentechblog.com/b-how-to-configure-nginx-as-a-loadbalancer/) for various protocols, as well as [setting up a Raspberry Pi as a VPN](https://torbentechblog.com/setup-raspberry-pi-as-vpn/). 
+In a previous post, we discussed on [using `nginx` as a load balancer](https://torbentechblog.com/b-how-to-configure-nginx-as-a-loadbalancer/) for various protocols, as well as [setting up a Raspberry Pi as a VPN](https://torbentechblog.com/setup-raspberry-pi-as-vpn/).
 
 Those use cases are already very interesting, but what if one of the two cases happen?
 
@@ -12,7 +12,6 @@ Those use cases are already very interesting, but what if one of the two cases h
 2. On the same host, you host two applications serving clients
 
 This is where `nginx` again comes in handy for utilizing it as a reverse proxy. Let's have a look into it, and see how we can set it up easy and secure!
-
 
 ## Reverse Proxies in General
 
@@ -32,21 +31,21 @@ The installation is quite simple, let's get started. Take this as an example for
 First, update your local package index and upgrade any packages which are already installed on your machine:
 
 ```bash
-  $ sudo apt update && sudo apt upgrade -y
+  sudo apt update && sudo apt upgrade -y
 ```
 
 Now, we want to get rid of any existing `apache2` installations. `apache2` is another web server which might come already installed on your machine (e.g. when you start up a server distro) and it interferes with our `nginx` installation, so let's remove it:
 
 ```bash
-  $ sudo apt purge apache2
-``` 
+  sudo apt purge apache2
+```
 
 This will remove the web server itself including its configurations.
 
 And now, finally install `nginx`!
 
 ```bash
-  $ sudo apt install -y nginx
+  sudo apt install -y nginx
 ```
 
 Depending on your machine and your network, this might take a while. When you're done, head over to the next step.
@@ -56,7 +55,7 @@ Depending on your machine and your network, this might take a while. When you're
 Normally, your `nginx` installation should start up right away and you can access the default page at `http://<your-ip>:80`. If not, start it up like so:
 
 ```bash
-  $ sudo systemctl start nginx
+  sudo systemctl start nginx
 ```
 
 ### Configuration directory
@@ -64,13 +63,13 @@ Normally, your `nginx` installation should start up right away and you can acces
 Per default, `nginx` stores its configuration at `/etc/nginx/`, so let's have a look at it:
 
 ```bash
-  $ cd /etc/nginx/sites-available/
+  cd /etc/nginx/sites-available/
 ```
 
 and create your first configuration file called `example.conf`.
 
 ```bash
-  $ sudo vim example.conf
+  sudo vim example.conf
 ```
 
 Add the following configuration (adjust the host and proxy_pass target to match your needs):
@@ -90,17 +89,16 @@ server {
 Hit save, and now we will check the config, enable it and reload nginx.
 
 ```bash
-  $ ln -s /etc/nginx/sites-available/example.conf /etc/nginx/sites-enabled/example.conf
+  ln -s /etc/nginx/sites-available/example.conf /etc/nginx/sites-enabled/example.conf
 
-  $ sudo nginx -t
+  sudo nginx -t
 
-  $ sudo systemctl reload nginx
+  sudo systemctl reload nginx
 ```
 
 And that's it! First we symlink our fresh configuration to the `sites-enabled/` directory, so `nginx` knows that it needs to respect that configuration as active. Then, we test the config for being syntactically correct with `sudo nginx -t` and then we reload our `nginx` service so the new config gets loaded.
 
 We're done! Our nginx installation is now forwarding traffic from `my.local.dns:80` to a backend application running on the same host as nginx which is listening on port `3000`.
-
 
 ## Summary
 

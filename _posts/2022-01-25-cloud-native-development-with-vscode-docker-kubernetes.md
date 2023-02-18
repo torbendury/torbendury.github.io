@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Cloud Native Local Development of Containerized Software with Docker and Kubernetes
-categories: [Cloud, Kubernetes, Homelab, Docker, Rapid Development, Containerization, VSCode]
+categories: [Public Cloud, Kubernetes, Homelab]
 ---
 
 How to setup your local development environment to be truly _cloud native_, using Docker and Kubernetes. All together united in your local IDE (e.g. Visual Studio Code - VS Code), you can test your applications like they were running in an arbitrary cloud.
@@ -58,7 +58,7 @@ You will be guided through an interactive menu in which you can, among other thi
 
 Time for your first image build, isn't it? Open the command palette, choose "Docker Image: Build" and let yourself be guided by the command prompts. Shortly, your image will be built.
 
-#### Your own container image registry!
+#### Your own container image registry
 
 When you followed the instructions of [Setting up k3d](https://torbentechblog.com/k3d-up-and-running-tutorial-linux/), you will need to apply a small change to your `k3d` `config.yml`:
 

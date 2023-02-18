@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Writing clean code in Python
-categories: [Programming, Development, Python]
+title: Writing Clean Code in Python
+categories: [Development, Python]
 ---
 
 There are many articles and books out there which describe several code standards, software engineering principles and some guidelines to write clean code. Still, there's an insane amount of spaghetti flying around in repositories. This (hopefully not yet-another-article) will give you some hints to get started when you're looking for simple ways to commit better code.

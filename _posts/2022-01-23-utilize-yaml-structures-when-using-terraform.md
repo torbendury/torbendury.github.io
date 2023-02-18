@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Manage recurring resources with Terraform and YAML
-categories: [Cloud, Infrastructure, Terraform, YAML, Infrastructure as Code, IaC, Templating]
+title: Manage Recurring Resources With Terraform and YAML
+categories: [Public Cloud, Terraform]
 ---
 
 Managing many cloud resources of the same type? Use Terraform `for_each` directive in combination with YAML templating!

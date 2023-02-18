@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Building a fan controller for your Raspberry Pi
-categories: [Embedded, Raspberry Pi, Hardware Programming]
+categories: [Homelab, Raspberry Pi]
 ---
 
 Learn how to build a simple and affordable fan controller for your Raspberry Pi to connect a simple fan with temperature control.
@@ -33,7 +33,7 @@ All in all, your setup could look like this on a breadboard:
 When you're all hooked up, connect to your Raspberry Pi via SSH and type:
 
 ```bash
-  $ sudo raspi-config
+  sudo raspi-config
 ```
 
 From there on, head to the "Performance" tab and enable the "Fan control". You can set a target temperature (e.g. 80°C) at which the Raspberry Pi is going to power the fan on to cool itself down. When asked to put in a pin number, we will choose our connected **GPIO14** pin. Hit `Enter` and you're done!
@@ -54,7 +54,7 @@ When you're all built and set up, you can run a simple test directly on your Ras
 When you're done installing everything, you can run a test and generate some report output:
 
 ```bash
-  $ stressberry-run output.dat
+  stressberry-run output.dat
 ```
 
 Soon, you will start to hear your fan running to cool the Raspberry Pi down.

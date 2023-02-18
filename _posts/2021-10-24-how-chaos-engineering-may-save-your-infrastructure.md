@@ -1,7 +1,7 @@
 ---
 layout: post
 title: How Chaos Engineering May Save Your Infrastructure
-categories: [Cloud, SRE, Site Reliability Engineering, Chaos Engineering, Microservices]
+categories: [Site Reliability Engineering]
 ---
 
 A short story about how you can specifically inject errors into a running system - and how you will improve your system with it.

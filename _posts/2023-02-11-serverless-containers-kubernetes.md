@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Serverless, Containers, Kubernetes. An Odyssey
-categories: [Architecture, Cloud, Development]
+categories: [Architecture, Public Cloud, Development]
 ---
 
 Which one do you need to choose? What do those technologies have in common, which drawbacks do they have? A distillate from the buzzword-driven world.

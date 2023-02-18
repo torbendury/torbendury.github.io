@@ -1,7 +1,7 @@
 ---
 layout: post
 title: How To Start With Terraform
-categories: [Cloud, GCP, Google Cloud Platform, HCL, Terraform, IaC]
+categories: [Public Cloud, Google Cloud Platform, Terraform]
 ---
 
 Terraform basically is a enterprise-ready deployment technology used by IT professionals who want to **provison** and **manage** their infrastructure as code (**IaC**).
@@ -91,7 +91,7 @@ Now that you have filled up your `terraform-example-01` directory, you need to l
 Use the following command to initialize your workspace:
 
 ```bash
-$ terraform init
+terraform init
 ```
 
 ### Planning and Applying resources
@@ -115,7 +115,7 @@ provider "google" {
 To see which resources will be created, updated or deleted before really touching them, you can run a `terraform plan` and see which resources will be touched by Terraform:
 
 ```bash
-$ terraform plan
+terraform plan
 ```
 
 Terraform is going to refresh its state and lookup if there are any conflicts or errors in your code which may result in failure. If everything is alright, you are ready to head to the next step.
@@ -156,7 +156,7 @@ You're done! Now, locate to [GCP Console](https://console.cloud.google.com) and 
 Nothing in life is free, neither are cloud resources (except the `e2-micro` instance we just created). When you no longer need cloud resources, you'll always want to destroy them. Terraform can take care of cleaning up your cloud project (as long as it was created - or imported - by Terraform)! Just hit in the following command and confirm when prompted:
 
 ```bash
-$ terraform destroy
+terraform destroy
 ```
 
 This will show you another CLI output of the resources that will be deleted.

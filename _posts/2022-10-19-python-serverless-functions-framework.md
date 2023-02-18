@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Using the Python functions-framework for serverless development
-categories: [Programming, Development, Python, Cloud]
+categories: [Development, Python, Public Cloud]
 ---
 
 The `functions-framework` is a serverless framework published and maintained by the Google Cloud Functions team.
@@ -16,7 +16,7 @@ You can use it for rapid development of lightweight and portable Python function
 For local development, it is recommended that you install the `functions-framework` package with pip:
 
 ```python
-$ pip install functions-framework
+pip install functions-framework
 ```
 
 Or add the following to your `requirements.txt`:
@@ -27,9 +27,7 @@ functions-framework==3.*
 
 **Note:** For Google Cloud Functions, you do not need to specify the above line in your `requirements.txt`.
 
-
 ### HTTP Example
-
 
 Let's start with a simple HTTP example. Serverless functions typically have an entrypoint that is defined when deploying the function. **Note** that there are patterns where your entrypoint is only a relay function that parses requests to other nested functions.
 
@@ -46,13 +44,13 @@ def entrypoint(request):
 Save this code snippet as `main.py`, spin up a terminal and type:
 
 ```bash
-$ functions-framework --target entrypoint --debug
+functions-framework --target entrypoint --debug
 ```
 
 And start making requests:
 
 ```bash
-$ curl localhost:8080/
+curl localhost:8080/
 ```
 
 You can also define **different routes** for your functions or handle request headers and body handed over as a `request` object.
@@ -88,6 +86,7 @@ curl -X POST localhost:8080 \
     "data" : "31.2"
 }'
 ```
+
 Your function then should log the following line: `Received event with id A234-1234-1234 and data 31.2`
 
 #### Emulating event platforms

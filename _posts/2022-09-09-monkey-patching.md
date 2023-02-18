@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Monkey Patching 101
-categories: [Programming, Development, Python]
+categories: [Development, Python]
 ---
 
 Monkey patching allows you to modify your code functions at runtime. Have a look into it to grasp the advantages and use cases.

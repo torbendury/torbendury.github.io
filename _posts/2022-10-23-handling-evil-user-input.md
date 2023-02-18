@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Handling Evil User Input
-categories: [Programming, Development, Security]
+categories: [Development, Security]
 ---
 
 A small post with thoughts on handling user inputs and the when's and how's of sanitizing.
@@ -67,7 +67,7 @@ If you look at the above example and ask yourself 'What is bad about this?', I'l
 
 Let us assume that a user Bob has logged into your website, you want to present him some information about his account, so you retrieve his user from the database by using the primary key `UserId` which is `42`. Your resulting SQL statement is `SELECT * FROM Users WHERE UserId = 42` which will correctly be executed. All fine?
 
-But now Bob has explored the network tab in the developers' tools in his favorite web browser. He sees the request made to your application and thinks 'What will happen if I...?', and it happens. Your resulting SQL statements is `SELECT * FROM Users WHERE UserId = 42 OR 1=1` which he managed to enter because your request can be reforged and resent with `curl`. 
+But now Bob has explored the network tab in the developers' tools in his favorite web browser. He sees the request made to your application and thinks 'What will happen if I...?', and it happens. Your resulting SQL statements is `SELECT * FROM Users WHERE UserId = 42 OR 1=1` which he managed to enter because your request can be reforged and resent with `curl`.
 
 There are numerous examples for this, just use your fantasy like they do. What keeps them from using a username `42 OR 1=1`? Probably nothing, but that doesn't mean you have to actually validate the input. To the rescue, parameterized queries!
 
@@ -112,7 +112,6 @@ query_result = db_connection.query(options=options).select(User).filter(filter=f
 
 Where your DB engine will choose the query to build from the `User` class you have defined and also the `filter` and `grouping` that can safely be entered by users.
 
-
 ## Conclusion
 
 Handling user data is not easy, not at all. While you have limited time to finish your project or API, users normally do not have those limitations and/or can use automated scripts to test for XSS/SQLi vulnerabilities.
@@ -123,4 +122,4 @@ This is why you should definitely handle user input in the safest ways possible,
 
 Above, you saw several possible ways of handling user inputs and how to safely use database connections and presenting user data.
 
-Although the time for your project might be limited and you definitely have limited resources compared to hackers, take your time, _go and see_ which possibilities you have to secure your application. Doing nothing is the worst you can do.
+Although the time for your project might be limited and you definitely have limited resources compared to hackers, take your time, *go and see* which possibilities you have to secure your application. Doing nothing is the worst you can do.

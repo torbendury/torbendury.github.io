@@ -1,7 +1,7 @@
 ---
 layout: post
 title: k3d Up and Running Tutorial for Linux machines
-categories: [Cloud, Kubernetes, Homelab, k3d, Rapid Development, YAML, Templating, Infrastructure as Code]
+categories: [Public Cloud, Kubernetes, Homelab]
 ---
 
 From zero to local Kubernetes development in 10 minutes. Promised!
@@ -42,7 +42,7 @@ If you don't have `wget` installed on your machine, you can also download the in
 After executing the installer script, verify your installation by typing:
 
 ```bash
-  $ k3d --help
+  k3d --help
 ```
 
 Now we're ready to rumble!
@@ -86,7 +86,7 @@ These are only some convenience features that can be turned off.
 Save the above configuration file as `config.yml` and create your cluster like this:
 
 ```bash
-  $ k3d cluster create --config config.yml
+  k3d cluster create --config config.yml
 ```
 
 As already mentioned, this will be done blazingly fast. If you ever worked with _minikube_ or _kind_, you'll instantly love it.
@@ -106,7 +106,7 @@ Above, I told you that your cluster is reachable via `http://localhost:8080` usi
 We want to make `k3d.localhost` available as a domain for our `traefik` ingress. This is done quickly:
 
 ```bash
-  $ sudo echo "127.0.0.1 k3d.localhost" >> /etc/hosts
+  sudo echo "127.0.0.1 k3d.localhost" >> /etc/hosts
 ```
 
 Now we can access the cluster using `http://k3d.localhost:8080/`. The port is kinda annoying, isn't it?
@@ -242,7 +242,7 @@ data:
               'useragent:$http_user_agent\t'
               'forwardedfor:$http_x_forwarded_for\t'
               'request_time:$request_time';
-      access_log	/dev/stdout;
+      access_log /dev/stdout;
       server {
           listen       80;
           server_name  _;
@@ -346,7 +346,7 @@ Save those YAML files and apply them with `kubectl apply -f [my files].yaml`.
 After that, try to reach your nginx!
 
 ```bash
-  $ curl -vL http://nginx.k3d.localhost
+  curl -vL http://nginx.k3d.localhost
 ```
 
 ## Summary

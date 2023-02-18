@@ -1,10 +1,10 @@
 ---
 layout: post
 title: Introduction to Rapid Web Development Using Python Flask
-categories: [Programming, Flask, Python, Web Development, API]
+categories: [Development, Python]
 ---
 
-This post is meant to be a light introduction into Python Flask. At the end of this post, you'll be able to rapidly develop small web applications. 
+This post is meant to be a light introduction into Python Flask. At the end of this post, you'll be able to rapidly develop small web applications.
 
 With some more learning, those apps will be enterprise-ready. The best of it? They're natively built to run in containerized runtimes (like Docker, containerd, ...) and the most available serverless platforms support the usage of Flask.
 
@@ -45,8 +45,8 @@ Let's stop the theoretic part and get our hands dirty. First, get up-to-date and
 When you're finished, start up by creating your first project directories:
 
 ```bash
-  $ mkdir -p flask_projects/hello_world/{static,templates}
-  $ cd flask_projects/hello_world/
+  mkdir -p flask_projects/hello_world/{static,templates}
+  cd flask_projects/hello_world/
 ```
 
 Now open this directory in your favorite IDE (or if you like staying in terminal, use `vim`) and create a file called `main.py` which has the following content inside:
@@ -92,8 +92,8 @@ Hello from <a href="https://torbentechblog.com">TorbenTechBlog</a>!
 Hit save, and from your terminal (or IDE) run the application:
 
 ```bash
-  $ chmod +x main.py
-  $ ./main.py
+  chmod +x main.py
+  ./main.py
 ```
 
 This is going to start your local webserver. Try to access it under [http://localhost:5000](http://localhost:5000) (the port may differ, it will be printed out on your log output on which port exactly the app is running).
@@ -102,9 +102,9 @@ This is going to start your local webserver. Try to access it under [http://loca
 
 Congratulations, you just built your first web application with Flask and served some content!
 
-## You promised templating!
+## You promised templating
 
-Sure thing. In this section, I'll show you a quick introduction to templating. It's easy, free and fun! 
+Sure thing. In this section, I'll show you a quick introduction to templating. It's easy, free and fun!
 
 When you opened up the browser last time, you saw "Hello from TorbenTechBlog". Quite boring (not the blog, I heard it's awesome), so let's be more dynamic.
 
