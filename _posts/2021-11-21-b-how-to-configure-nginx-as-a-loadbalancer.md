@@ -72,7 +72,7 @@ With the `stream` module, you may (just like in HTTP load balancing) define upst
 
 ### UDP Load Balancing
 
-Let's get to the last kind of load balancing that NGINX provides us out-of-the-box: UDP load balancing. Take a simple use case: You have several NTP (Network Time Protocol) servers which keep your applications in time sync. Your apps periodically check for the time to ensure that everything is in sync. You need to provide a high available backend for NTP.
+Let's get to the last kind of load balancing that NGINX provides us out-of-the-box: UDP load balancing. Take a use case: You have several NTP (Network Time Protocol) servers which keep your applications in time sync. Your apps periodically check for the time to ensure that everything is in sync. You need to provide a high available backend for NTP.
 
 Take the following example:
 
@@ -89,7 +89,7 @@ Take the following example:
     }
 ```
 
-In this config example, we simply tell NGINX to use the UDP protocol by appending `udp` to our `server` block. Again, we use `stream`, which will be included from a `stream.conf.d` folder inside `nginx.conf`.
+In this config example, we tell NGINX to use the UDP protocol by appending `udp` to our `server` block. Again, we use `stream`, which will be included from a `stream.conf.d` folder inside `nginx.conf`.
 
 ![PLANTUML NGINX UDP](https://www.plantuml.com/plantuml/svg/SoWkIImgoStCIybDBE3IYbREoKpFA4alIgsCLGWjJYtYqWAAbMTabgJ6AlYvU_f500M08a05gNcnLa05PK0rDidvAQbsN7ab1OPwkPL0AYE_kAHOBpa_bolK9S3AqDZOdAiy5MImhH6NZJv4jJN4fChKd9pySYn66U4q2c62GsfU2jJj0000)
 

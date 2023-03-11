@@ -4,7 +4,7 @@ title: How To Start With Terraform
 categories: [Public Cloud, Google Cloud Platform, Terraform]
 ---
 
-Terraform basically is a enterprise-ready deployment technology used by IT professionals who want to **provison** and **manage** their infrastructure as code (**IaC**).
+Terraform is a enterprise-ready deployment technology used by IT professionals who want to **provison** and **manage** their infrastructure as code (**IaC**).
 In this post, you will learn:
 
 - The basics of HCL syntax
@@ -48,7 +48,7 @@ _Content of `main.tf`_
 
 The provider is responsible for understanding and translating API interactions, authenticating requests and so on. The `google` provider definition needs an assigned `project` in which infrastructure should be deployed to, and a default `region` and `zone` to deploy.
 
-With this few lines, we told Terraform to use the "google" provider (GCP) and where to deploy our infrastructure. Easy, isn't it? Let's move on to our precious VM, where we will see how resources are defined. Create a file called `vm.tf` and paste this code into it:
+With this few lines, we told Terraform to use the "google" provider (GCP) and where to deploy our infrastructure. Cool, isn't it? Let's move on to our precious VM, where we will see how resources are defined. Create a file called `vm.tf` and paste this code into it:
 
 ```hcl
 resource "google_compute_instance" "tutorial" {
@@ -170,4 +170,4 @@ In this post, you learned how to:
 - Creating resources on your cloud provider
 - Destroying resources when you no longer need them
 
-This is a very good starter project to get a little taste of Terraform. But it does by no mean do justice to the Terraform technology as a whole. In Terraform, you can do much more then simply provision cloud resources from boring static code. You can provision resources completely dynamically, based on the results of queries or lookups, which I will show you in an upcoming post. Stay tuned!
+This is a very good starter project to get a little taste of Terraform. But it does by no mean do justice to the Terraform technology as a whole. In Terraform, you can do much more then provisioning cloud resources from boring static code. You can provision resources completely dynamically, based on the results of queries or lookups, which I will show you in an upcoming post. Stay tuned!

@@ -20,17 +20,17 @@ Netflix' Simian Army has taken big steps forward by developing various "monkeys"
 
 **When developing software, we are too afraid that something might break.** We trust the operations department or a dedicated team that takes care of architecture, infrastructure and day-to-day operations. That will be fine, the team will bend it. Well, that's where it's going to explode!
 
-Werner Vogels, CTO at Amazon Web Services, put it aptly: **Everything fails, all the time.** If we take a look at the monitoring of our systems, we see what he means by this: We experience crashes every day. Pods are constantly exploding in our Kubernetes clusters, but Kubernetes takes care that they start up again, right? Our database is very shaky, we take a complete snapshot of it before each risky transaction (which is generally not a bad thing). It's just like that, we've got used to it.
+Werner Vogels, CTO at Amazon Web Services, put it aptly: **Everything fails, all the time.** If we take a look at the monitoring of our systems, we see what Vogels means by this: We experience crashes every day. Pods are constantly exploding in our Kubernetes clusters, but Kubernetes takes care that they start up again, right? Our database is very shaky, we take a complete snapshot of it before each risky transaction (which is generally not a bad thing). It is like that, we've got used to it.
 
-{% include pullquote.html quote="It is high time that we come out of this ball pool of good weather development and start taking care of making our systems resistant." %}
+{% include pullquote.html quote="It is high time that we come out of this ball-pool of good weather development and start taking care of making our systems resistant." %}
 
 ## Start Breaking Stuff
 
-**It is not difficult at all to get into Chaos Engineering.** The "hello world" of it is to simply push a component over the cliff. The shutdown tells us if the rest of our system is able to handle the situation and continue to operate normally.
+**It is not difficult at all to get into Chaos Engineering.** The "hello world" of it is to push a component over the cliff. The shutdown tells us if the rest of our system is able to handle the situation and continue to operate normally.
 
 All of our components are disposable and we have to live with them dying. The rest of our system has to gracefully handle it and continue operating - otherwise the customers will run away.
 
-The churn rate of customers has been firmly anchored in our business metrics for ages, we calculate them and know that every missing customer makes us fluctuate. The competition is simply too big for such failures.
+The churn rate of customers has been firmly anchored in our business metrics for ages, we calculate them and know that every missing customer makes us fluctuate. The competition is too big for such failures.
 
 <div style="text-align: center;">
   <img src="/images/2021-10-24/02.webp" type="image/webp">
@@ -38,7 +38,7 @@ The churn rate of customers has been firmly anchored in our business metrics for
 
 _But how can you make your system more stable?_ First, get an overview of the current status of the overall system. This is relatively easy if you already have a graphic or something similar. If not, make one. Your team, your department and everyone else involved will thank you! In the next step, you make a list of which components are critical (Tier-1) and which are non-critical (Tier-2). The Tier-2 components will be the ones we'll experiment with first. Do you have a test environment? Use it! Do you not have? Put one on! Nobody likes people who smash the castle with the sandpit shovel in the productive environment.
 
-Once you've put your sandbox on, it's time to start thinking about what tests you want to do. We have already discussed the simple shutdown of components above. Here is a short list of some key points you should tap:
+Once you've put your sandbox on, it's time to start thinking about what tests you want to do. We have already discussed the shutdown of components above. Here is a short list of some key points you should tap:
 
 - shutdown of a component
 - pause a component
@@ -64,7 +64,7 @@ Above all, it is important to choose a fixed target for your tests. Be it a data
 
 ## Improve
 
-**Realize that simply destroying your component won't help anyone.** No maintainer will thank you if you have proven that his service is useless and unstable. It is therefore important that you analyze some useful data from the system during the experiment. These depend on the experiment you are performing and not every type of data set will be suitable for analyzing each experiment.
+**Realize that simply destroying your component won't help anyone.** No maintainer will thank you if you have proven that its service is useless and unstable. It is therefore important that you analyze some useful data from the system during the experiment. These depend on the experiment you are performing and not every type of data set will be suitable for analyzing each experiment.
 
 <div style="text-align: center;">
   <img src="/images/2021-10-24/03.webp" type="image/webp">
