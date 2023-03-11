@@ -15,4 +15,4 @@ MIT
 
 ## Theme
 
-This beautiful and simple, static theme is called _Reverie_ and can be found [here](https://github.com/amitmerchant1990/reverie). Big kudos to the creator!
+This beautiful and static theme is called _Reverie_ and can be found [here](https://github.com/amitmerchant1990/reverie). Big kudos to the creator!
