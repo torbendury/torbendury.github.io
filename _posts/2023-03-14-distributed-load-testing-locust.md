@@ -45,4 +45,4 @@ Through **event hooks** built into Locust, you can build custom logic and even s
 - [docs.locust.io](https://docs.locust.io/en/stable/)
   - extremely well written documentation on how to use Locust and avoid common pitfalls
 - [ContainerSolutions/locust_exporter](https://github.com/ContainerSolutions/locust_exporter)
-  - a Prometheus exporter for locust metrics. Comes handy-dandy
+  - a Prometheus exporter for locust metrics. Comes handy to use with the well-known [sidecar pattern](https://itnext.io/application-architecture-for-microservices-sidecar-pattern-c5c0074e8f1d).
