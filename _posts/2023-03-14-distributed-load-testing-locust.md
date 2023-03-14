@@ -24,6 +24,8 @@ Locust also has a robust set of features that allow developers to create realist
 
 One of the key features of Locust is its ability to generate detailed reports. After a test has been run, it can generate graphs and charts that show how the application performed under different loads. This information can be used to identify performance bottlenecks and make improvements to the application.
 
+<div style="text-align: center"><img src="/images/2023-03-14/01.png"/></div>
+
 In conclusion, Locust is an excellent choice for developers who need to perform load testing on their applications. It is easy to use, highly scalable, and has a robust set of features that allow developers to create realistic user scenarios. Additionally, its ability to generate detailed reports makes it a valuable tool for identifying performance issues and improving the overall quality of an application.
 
 ## Warm Tips
@@ -37,3 +39,10 @@ On the other hand, there is a Locust Exporter that can send the **metrics** that
 On the other hand, Locust enables out-of-the-box **HTML reports** that are management-ready. **CSV reports** are also available on-top for free.
 
 Through **event hooks** built into Locust, you can build custom logic and even some greenlets. Apart from all the high-level stuff, Locust is also just Python code and you can build a complete ecosystem around it.
+
+## Helpful Links
+
+- [docs.locust.io](https://docs.locust.io/en/stable/)
+  - extremely well written documentation on how to use Locust and avoid common pitfalls
+- [ContainerSolutions/locust_exporter](https://github.com/ContainerSolutions/locust_exporter)
+  - a Prometheus exporter for locust metrics. Comes handy-dandy

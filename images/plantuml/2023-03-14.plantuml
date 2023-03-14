@@ -1,0 +1,23 @@
+@startuml
+title Distributed Load Testing with Locust
+
+participant Master
+participant Worker1
+participant Worker2
+participant WorkerN
+
+Master -> Worker1 : Sends Test Case
+Master -> Worker2 : Sends Test Case
+Master -> WorkerN : Sends Test Case
+
+Worker1 -> Master : Sends Test Results
+Worker2 -> Master : Sends Test Results
+WorkerN -> Master : Sends Test Results
+
+Master -> Worker1 : Sends Next Test Case
+Master -> Worker2 : Sends Next Test Case
+Master -> WorkerN : Sends Next Test Case
+
+note over Master : Coordinates test\nexecution and collects\nresults
+note over Worker1, Worker2, WorkerN : Simulates user load and\nreports back to master
+@enduml
