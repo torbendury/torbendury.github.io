@@ -119,5 +119,3 @@ Did I mention that there should be a small MarkDown template for a chaos experim
 
 ** How can the experiment be automated? **
 ```
-
-Note: You might've already stumbled across this article on Medium. The reason I repost it here is that you'll be able to read as many of my articles as you want to - while not seeing a Medium-paywall or having to wait to read more Medium stories.

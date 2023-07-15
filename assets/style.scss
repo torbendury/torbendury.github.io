@@ -177,11 +177,11 @@ span[data-pullquote]:before {
 }
 
 a {
-  color: $blue;
+  color: #57b8ff;
   text-decoration: none;
 	cursor: pointer;
   &:hover, &:active {
-    color: $blue;
+    color: #57b8ff;
   }
 }
 
@@ -279,8 +279,8 @@ p > img {
 
 .site-avatar {
   float: left;
-  width: 70px;
-  height: 70px;
+  width: 85px;
+  height: 85px;
   margin-right: 15px;
 
   @include mobile {
@@ -351,7 +351,7 @@ nav {
 
     @include mobile {
       margin: 0 10px;
-      color: $blue;
+      color: #57b8ff;
     }
   }
 }
@@ -415,7 +415,7 @@ nav {
   bottom: 0;
   width: 100%;
   height: 89px;
-  background-color: $lightGray;
+  background-color: #eee;
 }
 
 footer {
@@ -471,7 +471,7 @@ body:after {
 
 .post_date{
   text-align: center;
-  color: #939aa1;
+  color: #7b838c;
 }
 
 .cd-container a {

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Set Up Your Raspberry Pi As a VPN
-categories: [Home Lab, Raspberry Pi]
+categories: [Homelab, Raspberry Pi]
 ---
 
 Learn how to set up your spare Raspberry Pi as a VPN into your home network. Browse the internet safely through your known network and hide your traffic from e.g. open WiFi hotspots.
@@ -10,7 +10,7 @@ Learn how to set up your spare Raspberry Pi as a VPN into your home network. Bro
 
 Let's jump in!
 
-## Flashing your operating system to SD card
+## Flashing Your Operating System to SD Card
 
 If you've already flashed a operating system for your Raspberry Pi to a SD card, you can skip this. Go ahead and install a headless Raspberry Pi OS Lite, enable SSH and WiFi to remotely access it. After that, jump [here](#configuring-openvpn).
 
@@ -28,7 +28,7 @@ For Debian'ish Linux users: The Imager is available in official `apt` repositori
 sudo apt update && sudo apt install -y rpi-imager
 ```
 
-## Flash the SD card and prepare the operating system
+## Flash The SD Card and Prepare The Operating System
 
 Next, insert your SD card into your machine.
 
@@ -36,7 +36,7 @@ No matter which OS you're on, open the search bar and type "Raspberry Pi Imager"
 
 When you're finished, unplug and re-insert your SD card into your machine. Your favorite file explorer will pop up and show you the content of the SD card.
 
-### Enable remote SSH
+### Enable Remote SSH
 
 Create a new empty file called `ssh`. Done. On first startup, your Raspberry Pi will know what to do with it. You will be able to `ssh` into the Pi with the following standard credentials:
 
@@ -47,7 +47,7 @@ Pass: raspberry
 
 You don't have to remember it, because I generally recommend changing it as soon as you logged into the machine (I'll show you later how to accomplish that). Remember: This Raspberry Pi will be _quite_ open to the Internet, so choose a good password.
 
-### Enable and configure WiFi
+### Enable and Configure WiFi
 
 Create another file called `wpa_supplicant.conf` on the SD card. Open it with your favorite text editor and enter the following information:
 
@@ -100,7 +100,7 @@ The default password is `raspberry`.
 
 When logged in, change your password by typing `passwd` and enter a new, secure password.
 
-### Update the Pi
+### Update The Pi
 
 After that, we first will do an update:
 
@@ -137,7 +137,7 @@ You will be asked to install "unattended upgrade" utilities. This is going to be
 
 When the installer is done, reboot your Pi.
 
-### Create client certificates
+### Create Client Certificates
 
 Your devices will connect to your VPN via a DNS, using a client certificate and a password of sufficient length (which, again, depends on your paranoia).
 
@@ -160,7 +160,7 @@ Note down the password (safely) and copy your new created certificate from `/hom
 
 Basically, we're done now. Make sure to configure your router to allow incoming traffic on port UDP 1194 to your Raspberry Pi.
 
-### Aftermath: Securing your installation
+### Aftermath: Securing Your Installation
 
 Let's take some security considerations for now. Basically, your router has opened a port which allows _some_ access into your home network. Everyone that successfully authenticates against your OpenVPN installation will be able to mess around in your home net. Let's avoid this!
 

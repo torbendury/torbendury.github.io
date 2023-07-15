@@ -27,7 +27,7 @@ If you've ever worked with HTML or built your own website, you probably ran into
 
 You can not just define them once, but you can change them whenever you like and your whole website is still going to match!
 
-## Your first web application
+## Your First Web Application
 
 Let's stop the theoretic part and get our hands dirty. First, get up-to-date and install everything you need. It's just two commands, so start your terminal (in this case, bash) and type:
 
@@ -102,7 +102,7 @@ This is going to start your local webserver. Try to access it under [http://loca
 
 Congratulations, you just built your first web application with Flask and served some content!
 
-## You promised templating
+## You Promised Templating
 
 Sure thing. In this section, I'll show you a quick introduction to templating. It's easy, free and fun!
 
@@ -137,7 +137,7 @@ You know the drill, hit save and start your app.
 
 When accessing [http://localhost:5000/](http://localhost:5000), you will still see the first page we've built. But when you access [http://localhost:5000/Torben](http://localhost:5000/Torben), you will see "Hello Torben"!
 
-## Templating best practices
+## Templating Best Pactices
 
 Did you see that we basically wrote two HTML files which have _quite_ the same content inside? Yes, me too - by intention. The only thing that really changes on our two HTML sites are the HTML `body` and the `title` sections. They are both intended to use the same CSS (which, in our case, is non at the moment) and everything else is based on the same skeleton.
 
@@ -191,7 +191,7 @@ Hello, {{name}}!
 
 Done! We just completely got rid of duplicated code and also started following best practices.
 
-## Addition: Dynamic links
+## Addition: Dynamic Links
 
 You often want pages to link to each other, e.g. link child pages back to your home page and vice-versa, or want some more advanced website headers to guide your users / customers through your website and link them to interesting stuff.
 

@@ -30,7 +30,7 @@ We expect that you have an active Google Cloud Platform account, a proper `proje
 
 **NOTE**: Creating infrastructure resources in public clouds costs money and is usually billed by usage time + size. For this tutorial, we use a VM with `e2-micro` machine type which runs on GCP's _always free_ resources.
 
-### Writing the configuration
+### Writing The Configuration
 
 As shown above, Terraform reads your desired infrastructure from configuration files to deploy the infrastructure components. So, if we want Terraform to deploy a VM instance, we need to _declare_ a VM instance as _code_. Start by creating an empty folder `terraform-example-01` and inside there a file called `main.tf`. The `.tf` file extension declares that this is a Terraform config file. When you run Terraform, it (basically) will concat every `.tf` file from your working directory and deploy the infrastructure described in there.
 
@@ -94,7 +94,7 @@ Use the following command to initialize your workspace:
 terraform init
 ```
 
-### Planning and Applying resources
+### Planning and Applying Resources
 
 What is planning? Planning is a so-called "dry-run" of your workspace against the cloud provider API. It will show you what resources it will create, update or delete.
 
