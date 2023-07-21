@@ -65,22 +65,22 @@ Cons of Semantic Versioning are:
 
 ## Contrasting Rolling Releases and Semantic Versioning
 
-1. Release Philosophy:
+1. **Release Philosophy:**
 
 - Rolling Releases focus on delivering continuous improvements, innovations and fixes to users as soon as they are available.
 - Semantic Versioning emphasizes providing structured and predictable updates, wanting users to understand the impact of each update before implementation.
 
-2. Frequency of Updates:
+2. **Frequency of Updates:**
 
 - Rolling Releases offer a constant stream of updates, potentially leading to faster bug fixes and real-time feature access.
 - Semantic Versioning follows a more periodic release pattern, with updates grouped into meaningful MAJOR, MINOR, and PATCH versions.
 
-3. Stability and Compatibility:
+3. **Stability and Compatibility:**
 
 - Rolling Releases _may_ exhibit more instability due to frequent changes, while Semantic Versioning promotes to provide more stability and backward compatibility.
 - Semantic Versioning per specification should reduce the likelihood of compatibility issues by strictly defining the implications of each version number.
 
-4. User Experience:
+4. **User Experience:**
 
 - Rolling Releases provide users with the latest features and bug fixes in real-time, but may also cause a steeper learning curve.
 - Semantic Versioning offers a more predictable user experience, but users may need to wait for the next MINOR version to access new features.
