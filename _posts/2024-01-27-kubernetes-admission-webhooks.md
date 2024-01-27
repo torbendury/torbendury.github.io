@@ -18,7 +18,7 @@ Kubernetes is a great tool to manage your containerized workloads. It provides a
 
 Admission webhooks are a way to extend the Kubernetes API server with your own logic. They are called admission webhooks because they are called by the API server when a request is made to the API server. The API server then calls your webhook and asks for a response. The webhook can then decide whether the request is allowed or not.
 
-<div style="text-align: center"><img src="/images/2024-01-28/01.png"/></div>
+<div style="text-align: center"><img src="/images/2024-01-27/01.png"/></div>
 
 There are two types of admission webhooks: validating admission webhooks and mutating admission webhooks. Validating admission webhooks are called before the request is processed by the API server. They can be used to validate the request and reject it if it is invalid. Mutating admission webhooks are called after the request is processed by the API server. They can be used to modify the request before it is processed by the API server.
 
