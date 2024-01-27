@@ -1,0 +1,13 @@
+@startuml
+
+package "Kubernetes API Server" {
+    component "Admission Controller" as ac
+    component "Webhook Server" as ws
+    component "Mutating Admission Controller" as mac
+    component "Validating Admission Controller" as vac
+}
+
+ac --> ws
+ws --> mac
+ws --> vac
+@enduml
