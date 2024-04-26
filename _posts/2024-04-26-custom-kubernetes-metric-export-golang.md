@@ -1,20 +1,18 @@
 ---
 layout: post
-title: Exporting Custom Metrics vom Kubernetes using Golang
+title: Exporting Custom Metrics from Kubernetes using Golang
 categories: [Development, Golang, Kubernetes]
 ---
 
-Introducing `kube-node-status`, because I needed it and because I can
+Introducing `kube-node-status`, because I needed it and because I can.
 
 ## Intro
-
-What is my problem? What am I trying to achieve? How am I doing that?
 
 In Google Cloud Platform, I'm running a [managed Kubernetes cluster](https://cloud.google.com/kubernetes-engine) and recently switched to a [managed version of Prometheus](https://cloud.google.com/stackdriver/docs/managed-prometheus) for scraping metrics from inside the cluster and saving it to Cloud Monitoring. So far, so expensive.
 
 Google-Managed Prometheus also offers taking care of your [kube-state-metrics](https://cloud.google.com/stackdriver/docs/managed-prometheus/exporters/kube_state_metrics) installation, which sounds fun first, however Google also decided they know best [which components managed kube-state-metrics](https://cloud.google.com/kubernetes-engine/docs/how-to/configure-metrics#enable-ksm) is able to monitor and which you can't enable as a customer. Guess what, they don't think node metrics are interesting for you. Bummer.
 
-However, since I'm here for learning and always ready to MacGyver some small solution, let me introduce [kube-node-status](https://github.com/torbendury/kube-node-status/)
+However, since I'm here for learning and always ready to MacGyver some small solution, let me introduce [kube-node-status](https://github.com/torbendury/kube-node-status/).
 
 ### kube-node-status
 
