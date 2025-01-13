@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Using Azure Application Gateway Ingress Controller in AKS and Let's Encrypt Certificates to securely expose applications
-categories: [Public Cloud, Microsoft Azure Kubernetes]
+categories: [Public Cloud, Microsoft Azure, Kubernetes]
 ---
 
 How to deploy an AKS cluster with a managed instance of __Application Gateway__ and __Application Gateway Ingress Controller__ and obtain __free__ and __automated__ Let's Encrypt certificates. We will be doing this with Terraform and Helm.

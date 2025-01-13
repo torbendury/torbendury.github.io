@@ -1,0 +1,41 @@
+@startuml Azure Container App
+
+title otel-collector Azure Container App
+
+skinparam linetype ortho
+left to right direction
+skinparam nodesep 20
+skinparam ranksep 20
+
+folder "Monitoring Subscription" as monitoringfolder {
+    frame "Container Apps Environment" as cae {
+        component "Container App" as ca {
+            card "IP Whitelisting" as ipwhitelist
+            card "IP" as ip
+        }
+    }
+
+    frame "DNS" as dns {
+        card "A Record" as customdomain
+    }
+
+    frame "Storage Layer" as storage {
+        database "Azure Blob Storage" as blobstore {
+                file "otel-config.yaml" as otelconf
+        }
+        database "Azure Key Vault" as kv {
+            file "TLS certificate + CA" as tlscert
+            file "TLS secret key" as tlssecret
+        }
+    }
+}
+folder "Third Party Software" as tps
+
+component "ACME Lets Encrypt" as acmele
+
+tps -r-> ca : push syslog log entry
+ip -d- customdomain
+ca ------ storage : mount
+kv -d- acmele
+
+@enduml
