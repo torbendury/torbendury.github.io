@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Collecting syslog logs with otel-collector with Azure Container Apps via TCP and TLS
+title: Collecting syslog logs in otel-collector with Azure Container Apps via TCP and TLS
 categories: [Development, Public Cloud, Microsoft Azure, Container]
 ---
 
