@@ -205,7 +205,6 @@ locals {
 #! Key Vault strips newlines!
 #! https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_secret
 resource "azurerm_key_vault_secret" "otel_collector_tls_cert" {
-  # checkov:skip=CKV_AZURE_41: Rotation automated, no explicit expiry needed
   name         = "tls-cert-pem"
   value        = local.cert_with_intermediate_ca
   key_vault_id = azurerm_key_vault.this.id
@@ -213,7 +212,6 @@ resource "azurerm_key_vault_secret" "otel_collector_tls_cert" {
 }
 
 resource "azurerm_key_vault_secret" "otel_collector_private_key" {
-  # checkov:skip=CKV_AZURE_41: Rotation automated, no explicit expiry needed
   name         = "tls-key-pem"
   value        = replace(acme_certificate.otel_collector.private_key_pem, "/\n/", "\n")
   key_vault_id = azurerm_key_vault.this.id
