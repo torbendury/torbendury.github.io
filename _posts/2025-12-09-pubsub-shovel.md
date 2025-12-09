@@ -1,49 +1,26 @@
 ---
 layout: post
-title: Building PubSub Shovel - A Message Transfer Tool for Google Cloud PubSub
+title: PubSub Shovel - Moving Messages Around Like It's 2025
 categories: [Development, Open Source, Google Cloud, PubSub, Serverless]
 ---
 
-Building a flexible, serverless tool for transferring messages between Google Cloud PubSub subscriptions and topics, inspired by RabbitMQ's shovel plugin.
+I got tired of writing the same message transfer scripts over and over, so I built a proper tool for it.
 
-## Background
+## The Problem
 
-Working with Google Cloud PubSub in production environments, I frequently encountered scenarios where I needed to move messages from one subscription to another topic. Whether for data migration, reprocessing failed messages, or routing messages to different processing pipelines, there wasn't a straightforward tool that offered the flexibility I needed.
+You know that feeling when you're working with PubSub and suddenly you need to move a bunch of messages from one subscription to another topic? Maybe you're migrating data, or reprocessing some failed messages, or just need to route stuff around.
 
-RabbitMQ has an excellent "shovel" plugin that handles message transfer between queues, exchanges, and even different RabbitMQ clusters. However, Google Cloud PubSub lacks an equivalent built-in mechanism for flexible message routing and transfer operations.
+Google's tooling is great for streaming and real-time processing, but when you just want to grab some existing messages and dump them somewhere else? Good luck with that. You end up writing custom scripts every single time.
 
-This gap led me to create [PubSub Shovel](https://github.com/torbendury/pubsub-shovel) - a serverless tool that provides the missing message transfer capabilities for Google Cloud PubSub environments.
+RabbitMQ folks had this figured out ages ago with their shovel plugin. It just works - you point it at a source and destination, and it moves messages. Simple.
 
-## Problem Statement
+So I built [PubSub Shovel](https://github.com/torbendury/pubsub-shovel) to fill that gap.
 
-The challenges I faced with existing solutions:
+## What It Does
 
-**Limited Transfer Options**: Google Cloud's native tools primarily focus on streaming and real-time processing, but don't provide simple batch transfer capabilities for existing messages in subscriptions.
+Simple concept: HTTP endpoint that moves messages from a PubSub subscription to a topic. You can either move a specific number of messages or just say "move everything".
 
-**Operational Complexity**: Moving messages between topics often required writing custom scripts, deploying temporary compute resources, or using complex streaming pipelines for what should be simple operations.
-
-**Lack of Flexibility**: Existing solutions didn't offer fine-grained control over how many messages to transfer, concurrent processing limits, or proper error handling for partial failures.
-
-**No Reusable Tool**: Every time I needed to move messages, I found myself writing similar code patterns. There was no standardized, deployable tool that could handle various message transfer scenarios.
-
-The goal was to create a flexible, serverless tool that could handle message transfers efficiently while being easy to deploy and operate.
-
-## Design Principles
-
-### Serverless-First Architecture
-
-I designed PubSub Shovel as a Google Cloud Function to eliminate infrastructure management overhead. The tool needed to be:
-
-- **Zero-maintenance**: Deploy once, use repeatedly without managing servers
-- **Cost-effective**: Pay only when transferring messages, no idle compute costs
-- **Auto-scaling**: Handle varying message volumes without configuration
-- **Cloud-native**: Integrate seamlessly with Google Cloud IAM and monitoring
-
-### Flexible Message Processing
-
-The tool supports two primary usage patterns:
-
-**Batch Transfer**: Transfer a specific number of messages for controlled, incremental processing:
+Here's what a request looks like:
 
 ```json
 {
@@ -53,7 +30,7 @@ The tool supports two primary usage patterns:
 }
 ```
 
-**Complete Transfer**: Process all available messages in a subscription:
+Or if you want to move everything:
 
 ```json
 {
@@ -63,32 +40,23 @@ The tool supports two primary usage patterns:
 }
 ```
 
-### Asynchronous Processing
-
-Rather than making clients wait for potentially long-running transfers, the function immediately returns an acknowledgment and processes messages asynchronously:
+The function returns immediately and processes stuff in the background. No more waiting around for transfers to complete:
 
 ```go
-// Return immediate response
 response := ShovelResponse{
     Status:    "accepted",
     Message:   "Message shoveling started asynchronously",
     RequestID: requestID,
 }
-
-w.WriteHeader(http.StatusAccepted)
 ```
 
-This design enables:
+You get a request ID back so you can track it in the logs if needed.
 
-- **Better user experience**: Immediate feedback without blocking
-- **Timeout handling**: Long transfers don't cause HTTP timeouts
-- **Monitoring capability**: Request IDs enable tracking and logging
+## Implementation Details
 
-## Technical Implementation
+### Concurrency Without Chaos
 
-### Concurrent Message Processing
-
-The core processing logic uses Go's concurrency features to handle messages efficiently:
+The tricky part was handling concurrent message processing without making a mess:
 
 ```go
 sourceSub.ReceiveSettings.Synchronous = false
@@ -96,20 +64,18 @@ sourceSub.ReceiveSettings.NumGoroutines = 10
 sourceSub.ReceiveSettings.MaxOutstandingMessages = 100
 ```
 
-Key design decisions:
+I limited it to 10 concurrent goroutines because more than that tends to overwhelm the target topic. Plus 100 outstanding messages keeps memory usage reasonable.
 
-**Controlled Concurrency**: Limited to 10 concurrent goroutines to prevent overwhelming the target topic while maintaining good throughput.
+The important bit: messages only get acknowledged from the source *after* they're successfully republished to the target. No message loss if something goes wrong.
 
-**Message Acknowledgment**: Original messages are only acknowledged after successful republication to the target topic, ensuring no message loss on failures.
+Had to be careful with race conditions around message counting. Nothing worse than accepting more messages than you asked for because of timing issues.
 
-**Race Condition Prevention**: Careful mutex usage around message counting to prevent accepting more messages than requested.
+### Error Handling
 
-### Error Handling and Reliability
-
-The implementation includes comprehensive error handling:
+Basic stuff but important:
 
 ```go
-// Validate target topic exists before processing
+// Check if target topic actually exists before we start
 exists, err := targetTopic.Exists(ctx)
 if err != nil {
     return 0, fmt.Errorf("failed to check if target topic exists: %v", err)
@@ -119,15 +85,11 @@ if !exists {
 }
 ```
 
-**Pre-flight Validation**: Checks target topic existence before starting to fail fast on configuration errors.
+Fail fast if the target doesn't exist. Also has timeouts (5-10 minutes) so it won't hang forever if something's broken (or if you request more messages than are available).
 
-**Atomic Operations**: Messages are only acknowledged from the source after successful republication to prevent partial failures.
+### Configuration
 
-**Timeout Protection**: Processing includes configurable timeouts (5-10 minutes) to prevent indefinite hanging.
-
-### Configuration Flexibility
-
-The tool extracts project information and resource names from fully qualified domain names (FQDNs), eliminating the need for separate configuration:
+One nice thing - you just use the full PubSub resource names and it figures out projects automatically:
 
 ```go
 func extractProjectID(resourceName string) string {
@@ -141,13 +103,13 @@ func extractProjectID(resourceName string) string {
 }
 ```
 
-This design enables cross-project transfers and simplifies usage by requiring only the standard PubSub resource names.
+This means you can do cross-project transfers without extra config.
 
-## Deployment Options
+## Deployment
 
-### Google Cloud Functions (Primary)
+### Cloud Functions
 
-The serverless deployment option provides the best operational experience:
+The obvious choice for this kind of utility:
 
 ```bash
 gcloud functions deploy pubsub-shovel \
@@ -157,51 +119,44 @@ gcloud functions deploy pubsub-shovel \
   --allow-unauthenticated
 ```
 
-Benefits:
+Zero infrastructure to manage, scales automatically, and you only pay when you use it.
 
-- Zero infrastructure management
-- Automatic scaling based on demand
-- Integrated with Cloud Logging and Monitoring
-- Pay-per-use pricing model
+### Running Locally
 
-### Local Development
-
-For testing and development, the tool can run locally using the Functions Framework:
+For development, just:
 
 ```bash
 go run cmd/main.go
 ```
 
-This enables:
+Works with real PubSub resources, so you can test properly without deploying every time.
 
-- Local testing with real PubSub resources
-- Development iteration without deployment cycles
-- Integration testing in CI/CD pipelines
+### Docker
 
-### Containerized Deployment
-
-The included Dockerfile supports deployment to any container runtime:
+There's a Dockerfile if you want to run it somewhere else:The included Dockerfile supports deployment to any container runtime:
 
 ```dockerfile
 FROM golang:1.24-alpine AS builder
-# Build process...
+WORKDIR /app
+COPY go.mod go.sum ./
+RUN go mod download
+COPY . .
+RUN CGO_ENABLED=0 GOOS=linux go build -o main .
 
 FROM alpine:latest
+RUN apk --no-cache add ca-certificates
+WORKDIR /root/
 COPY --from=builder /app/main .
 CMD ["./main"]
 ```
 
-This option enables:
+Works with Cloud Run if you want HTTP triggers with more control.
 
-- Deployment to Cloud Run for HTTP-triggered scenarios
-- Integration into existing container orchestration systems
-- Custom networking and resource configurations
+Although I did not test it myself, you should also be able to build a standalone binary and deploy it to any environment that can run the resulting executable.
 
-## Testing Strategy
+## Testing
 
-### Unit Testing
-
-Comprehensive test coverage for request validation and utility functions:
+I wrote tests for the important stuff - input validation, CORS handling, utility functions:
 
 ```go
 func TestHandler_ValidationErrors(t *testing.T) {
@@ -210,144 +165,88 @@ func TestHandler_ValidationErrors(t *testing.T) {
         payload      ShovelRequest
         expectedCode int
     }{
-        // Test cases for various scenarios...
+        // Test cases...
     }
-    // Test implementation...
 }
 ```
 
-**Input Validation**: Tests ensure proper error handling for invalid requests, missing parameters, and conflicting options.
+The integration tests use real PubSub resources instead of mocks. More reliable that way.
 
-**CORS Handling**: Validates proper CORS headers for web application integration.
-
-**Method Restrictions**: Confirms only POST requests are accepted with appropriate error responses.
-
-### Integration Testing
-
-The tool is designed to work with real PubSub resources for integration testing:
-
-```bash
-curl -X POST http://localhost:8080 \
-  -H "Content-Type: application/json" \
-  -d '{"numMessages": 10, "sourceSubscription": "projects/test/subscriptions/test-sub", "targetTopic": "projects/test/topics/test-topic"}'
-```
-
-This approach enables testing against actual PubSub behavior rather than mocks.
-
-## Real-World Use Cases
+## Use Cases
 
 ### Data Migration
 
-Moving messages from legacy topics to new topic structures during system migrations:
-
 ```bash
-# Transfer all messages from old topic pattern to new pattern
+# Move everything from old to new topic structure
 curl -X POST https://YOUR_FUNCTION_URL \
-  -d '{"allMessages": true, "sourceSubscription": "projects/prod/subscriptions/legacy-processor", "targetTopic": "projects/prod/topics/new-processing-pipeline"}'
+  -d '{"allMessages": true, "sourceSubscription": "projects/prod/subscriptions/legacy-processor", "targetTopic": "projects/prod/topics/new-pipeline"}'
 ```
 
-### Reprocessing Failed Messages
-
-Transferring messages from dead letter queues back to main processing topics:
+### Dead Letter Queue Recovery
 
 ```bash
-# Reprocess 50 failed messages at a time
+# Reprocess failed messages, 50 at a time so you don't flood the system
 curl -X POST https://YOUR_FUNCTION_URL \
-  -d '{"numMessages": 50, "sourceSubscription": "projects/prod/subscriptions/dlq-subscription", "targetTopic": "projects/prod/topics/main-processor"}'
+  -d '{"numMessages": 50, "sourceSubscription": "projects/prod/subscriptions/dlq-sub", "targetTopic": "projects/prod/topics/main-processor"}'
 ```
 
-### Message Routing
-
-Redistributing messages between different processing pipelines based on operational needs:
+### Environment Routing
 
 ```bash
-# Route messages to different processing environment
+# Move backlog to staging for testing
 curl -X POST https://YOUR_FUNCTION_URL \
   -d '{"numMessages": 100, "sourceSubscription": "projects/prod/subscriptions/backlog", "targetTopic": "projects/staging/topics/batch-processor"}'
 ```
 
-## Security and IAM
+## Permissions
 
-The tool leverages Google Cloud IAM for authentication and authorization, requiring appropriate permissions:
+You need the usual PubSub permissions:
 
-**Required Permissions**:
+- `pubsub.subscriber` on the source subscription
+- `pubsub.publisher` on the target topic
+- `pubsub.viewer` to check if topics exist
 
-- `pubsub.subscriber` on source subscription
-- `pubsub.publisher` on target topic
-- `pubsub.viewer` for topic existence checks
+CORS is enabled so you can call it from web apps if needed.
 
-**Security Features**:
+## What I Learned
 
-- CORS support for secure web application integration
-- Input validation on all parameters
-- No sensitive data stored in function code
-- Uses Google Cloud's built-in authentication mechanisms
+### Concurrency is Hard
 
-## Performance Characteristics
-
-**Throughput**: Processes up to 10 messages concurrently with 100 outstanding messages, providing good balance between speed and resource usage.
-
-**Latency**: Immediate HTTP response (sub-second) with asynchronous background processing.
-
-**Scalability**: Cloud Functions automatically scale based on incoming requests, handling multiple concurrent shovel operations.
-
-**Cost Efficiency**: Pay-per-invocation model means zero cost when not actively transferring messages.
-
-## Challenges and Learning
-
-### Concurrency Control
-
-Managing concurrent message processing while maintaining accurate counts proved complex. The solution required careful mutex usage and atomic operations:
+Getting the message counting right with multiple goroutines was trickier than expected. Had to use mutexes carefully to avoid race conditions:
 
 ```go
 var acceptedCount int
 var processedCount int
 var mutex sync.Mutex
 
-// Increment accepted count immediately to prevent race condition
+// Lock immediately to prevent accepting more than requested
 mutex.Lock()
 acceptedCount++
 mutex.Unlock()
 ```
 
-### PubSub API Intricacies
+### PubSub Quirks
 
-Learning the nuances of PubSub's receive settings and message acknowledgment patterns:
+Had to learn some PubSub API specifics the hard way:
 
-- **Synchronous vs Asynchronous**: Asynchronous processing provides better throughput
-- **Outstanding Messages**: Limiting outstanding messages prevents memory issues
-- **Acknowledgment Timing**: Messages must only be acked after successful republishing
+- Asynchronous processing is way faster than synchronous
+- Outstanding message limits prevent memory bloat
+- Only ack messages after successful republishing, otherwise you lose them
 
-### Functions Framework Integration
+### Functions Framework
 
-Integrating with Google Cloud Functions Framework while maintaining local development capability required understanding the framework's initialization patterns and HTTP handling.
+The Go Functions Framework took a bit of figuring out, especially making it work for both local development and Cloud Functions deployment. Worth it though. `functions-framework` makes it easy to switch between environments and keeps local development and GCP Cloud Function / Run Functions at parity without me having to jump through fire hoops. :-)
 
-## Future Enhancements
+## What's Next
 
-**Message Filtering**: Add support for filtering messages based on attributes or content before transfer.
+Could add message filtering based on attributes, or transformation during transfer. Maybe support for multiple target topics in one operation.
 
-**Transformation Support**: Enable message transformation during transfer (format conversion, attribute modification).
-
-**Batch Operations**: Support transferring to multiple target topics in a single operation.
-
-**Monitoring Integration**: Enhanced metrics and alerting integration for production usage.
-
-**Dead Letter Handling**: Built-in dead letter queue support for messages that fail to transfer.
+But honestly, it does what I need it to do right now.
 
 ## Conclusion
 
-Building PubSub Shovel addressed a real operational need while exploring serverless architecture patterns and PubSub API capabilities. The project demonstrates how a focused, well-designed tool can solve specific problems more effectively than complex, general-purpose solutions.
+Built this because I was tired of writing the same message moving code over and over. Now it's a proper tool that just works.
 
-Key takeaways from the project:
+Cloud Functions turned out to be perfect for this - zero maintenance, scales automatically, and costs nothing when you're not using it.
 
-**Serverless Benefits**: Cloud Functions provided an excellent deployment model for this type of utility, eliminating operational overhead while providing excellent scalability.
-
-**API Design Matters**: Simple, well-validated APIs enable reliable automation and easy integration into operational workflows.
-
-**Concurrent Programming**: Proper concurrency control is essential when dealing with message ordering and count accuracy in distributed systems.
-
-**Testing is Critical**: Comprehensive unit tests combined with integration testing against real PubSub resources provided confidence in reliability.
-
-The tool is now available as an open-source project at [github.com/torbendury/pubsub-shovel](https://github.com/torbendury/pubsub-shovel), ready for deployment in any Google Cloud environment needing flexible PubSub message transfer capabilities.
-
-Whether you're migrating data, reprocessing messages, or routing traffic between topics, PubSub Shovel provides a reliable, serverless solution that handles the operational complexity while offering the flexibility needed for real-world message transfer scenarios.
+The code is on [GitHub](https://github.com/torbendury/pubsub-shovel) if you want to use it or improve it. Deploy once and you're set for all your message moving needs.
